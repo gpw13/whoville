@@ -77,15 +77,7 @@ up our tidy names and get the correct UN region and income group for our
 countries, as well as its name in Chinese:
 
 ``` r
-library(dplyr, quietly = TRUE)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
+library(dplyr)
 df <- data.frame(c_names = c("Venezuela", "Arentina", "afghanist"))
 
 df %>%
@@ -93,8 +85,6 @@ df %>%
          un_region = iso3_to_regions(iso3, region = "un_region"),
          wb_ig = iso3_to_regions(iso3, region = "wb_ig"),
          name_zh = iso3_to_names(iso3, org = "un", language = "zh"))
-#> 'arentina' has no exact match. Closest name found was 'argentina'.
-#> 'afghanist' has no exact match. Closest name found was 'afghanistan'.
 #>     c_names iso3 un_region  wb_ig                name_zh
 #> 1 Venezuela  VEN        19 WB_UMI 委内瑞拉玻利瓦尔共和国
 #> 2  Arentina  ARG        19  WB_HI                 阿根廷

@@ -72,8 +72,8 @@ Since these functions are vectorized, we can easily use them in a normal workflo
 if we're using the `tidyverse`. Below, we can clean up our tidy names and get
 the correct UN region and income group for our countries, as well as its name
 in Chinese:
-```{r last_example}
-library(dplyr, quietly = TRUE)
+```{r last_example, message=F}
+library(dplyr)
 df <- data.frame(c_names = c("Venezuela", "Arentina", "afghanist"))
 
 df %>%
