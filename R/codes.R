@@ -40,7 +40,7 @@ is_who_member <- function(iso3) {
   utils::data("countries", envir = environment())
   members <- countries[["who_member_state"]]
   idx <- match(iso3, countries[["iso3"]])
-  members[idx]
+  members[idx] %in% TRUE
 }
 
 #' Check if country codes are present in `countries` data frame.
