@@ -17,11 +17,17 @@ names and codes and access to regions and WHO member status.
 
 ## Functions
 
-  - `names_to_code()` is the workhorse function that helps match country
-    names and returns standardized country codes
+Some functions are built to help you turn names or country codes into
+ISO3 codes:
 
-The other functions encourage a tidy R workflow where ISO3 codes are
-used as the unique identifier for each country.
+  - `names_to_code()` is the workhorse function that helps match country
+    names and returns standardized country codes.
+  - `codes_to_iso3()` converts other country codes into ISO3 format.
+  - `valid_codes()` lets you quickly check which country codes in a
+    vector are recognized by the whotilities package.
+
+Other functions encourage a tidy R workflow where ISO3 codes are used as
+the unique identifier for each country:
 
   - `iso3_to_regions()` takes in a vector of ISO3 codes and returns
     specified region values.
@@ -71,7 +77,7 @@ up our tidy names and get the correct UN region and income group for our
 countries, as well as its name in Chinese:
 
 ``` r
-library(dplyr)
+library(dplyr, quietly = TRUE)
 #> 
 #> Attaching package: 'dplyr'
 #> The following objects are masked from 'package:stats':

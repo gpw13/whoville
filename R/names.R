@@ -1,16 +1,16 @@
 #' Get country codes from names.
 #'
-#' `names_to_code()` takes in a vector of country names and returns a vector of
+#' `names_to_codes()` takes in a vector of country names and returns a vector of
 #' specified country codes.
 #'
 #' The function first searches for exact matches in the `countries`
 #' data frame, and if none are found, uses fuzzy matching to guess the country.
 #' Matching is done using `stringdist` [fuzzy matching methods][stringdist::stringdist-metrics],
-#' although `names_to_code()` allows the user to not do any fuzzy matching (non-exact
+#' although `names_to_codes()` allows the user to not do any fuzzy matching (non-exact
 #' matches returned as `NA`) or require user input.
 #'
 #' @param names A character vector of country names.
-#' @param code A character value specifying the type of country code to return.
+#' @param type A character value specifying the type of country code to return.
 #'     Defaults to ISO3. All possible values available through `country_code_types()`.
 #' @param language A character value specifying the language of the country names.
 #'     Should be specified using the ISO2 language code. Defaults to "en", but matching
@@ -30,20 +30,20 @@
 #'
 #' @export
 names_to_code <- function(names,
-                          code = "iso3",
+                          type = "iso3",
                           language = "en",
                           ignore_case = T,
                           fuzzy_matching = "yes",
                           method = "jw",
                           p = 0.1) {
-  rlang::arg_match(code, country_code_types())
+  rlang::arg_match(type, country_code_types())
   rlang::arg_match(language, c("en", "es", "ru", "ar", "zh", "fr"))
   assert_logical(ignore_case)
   assert_fuzzy_matching(fuzzy_matching)
   rlang::arg_match(method, c("osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"))
   assert_p(p)
 
-  data("countries", envir = environment())
+  utils::data("countries", envir = environment())
 
   df <- dplyr::select(countries[,name_cols()],
                       dplyr::ends_with(language))
@@ -59,7 +59,7 @@ names_to_code <- function(names,
                    method = method,
                    p = p,
                    fm = fuzzy_matching,
-                   code = code,
+                   type = type,
                    countries = countries)
   unname(result)
 }
@@ -70,14 +70,14 @@ name_matching <- function(name,
                           method,
                           p,
                           fm,
-                          code,
+                          type,
                           countries) {
   scrs <- apply(df, 2, stringdist::stringdist, name, method = method, p = p)
   scr_mins <- apply(scrs, 1, function(x) suppressWarnings(min(x, na.rm = T)))
   row <- which.min(scr_mins)
   col <- apply(scrs, 1, which.min)[[row]]
   fit <- df[row, col]
-  fuzz_result <- countries[[code]][row]
+  fuzz_result <- countries[[type]][row]
   if (min(scr_mins) != 0) {
     if (fm == "no") {
       result <- NA_character_
@@ -88,17 +88,17 @@ name_matching <- function(name,
       } else {
         check <- T
         while (check) {
-          message("The best match found for '", name, "' is '", fit, "' with ", toupper(code)," code ", fuzz_result, ".")
+          message("The best match found for '", name, "' is '", fit, "' with ", toupper(type)," code ", fuzz_result, ".")
           result <- readline(sprintf("Confirm the correct %s code for %s. Type 'N/A' to skip this country: ",
-                                     toupper(code),
+                                     toupper(type),
                                      name))
-          if (result %in% c("N/A", countries[[code]])) {
+          if (result %in% c("N/A", countries[[type]])) {
             check <- F
             if (result == "N/A") result <- NA_character_
           } else {
             check_input <- readline(sprintf("%s is not a valid %s code found in the countries file. Please confirm if %s is correct (y/n): ",
                                             result,
-                                            toupper(code),
+                                            toupper(type),
                                             result))
             if (tolower(check_input) == "y") {
               check <- F

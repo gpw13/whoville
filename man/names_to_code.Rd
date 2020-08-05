@@ -6,7 +6,7 @@
 \usage{
 names_to_code(
   names,
-  code = "iso3",
+  type = "iso3",
   language = "en",
   ignore_case = T,
   fuzzy_matching = "yes",
@@ -17,7 +17,7 @@ names_to_code(
 \arguments{
 \item{names}{A character vector of country names.}
 
-\item{code}{A character value specifying the type of country code to return.
+\item{type}{A character value specifying the type of country code to return.
 Defaults to ISO3. All possible values available through \code{country_code_types()}.}
 
 \item{language}{A character value specifying the language of the country names.
@@ -42,13 +42,13 @@ for Jaro-Winkler distance. Ignored if method is not "jw".}
 A vector of country codes matched to the names.
 }
 \description{
-\code{names_to_code()} takes in a vector of country names and returns a vector of
+\code{names_to_codes()} takes in a vector of country names and returns a vector of
 specified country codes.
 }
 \details{
 The function first searches for exact matches in the \code{countries}
 data frame, and if none are found, uses fuzzy matching to guess the country.
 Matching is done using \code{stringdist} \link[stringdist:stringdist-metrics]{fuzzy matching methods},
-although \code{names_to_code()} allows the user to not do any fuzzy matching (non-exact
+although \code{names_to_codes()} allows the user to not do any fuzzy matching (non-exact
 matches returned as \code{NA}) or require user input.
 }

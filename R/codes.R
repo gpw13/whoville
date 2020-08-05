@@ -14,12 +14,12 @@
 #'
 #' @export
 iso3_to_regions <- function(iso3,
-                           region = "who_region",
-                           return = "code") {
+                            region = "who_region",
+                            return = "code") {
   rlang::arg_match(region, c("who_region", "un_region", "un_subregion", "wb_ig"))
   rlang::arg_match(return, c("en", "code"))
 
-  data("countries", envir = environment())
+  utils::data("countries", envir = environment())
   rgx <- sprintf("^%s.*%s$", region, return)
   regions <- countries[[which(grepl(rgx, names(countries)))]]
   idx <- match(iso3, countries[["iso3"]])
@@ -37,25 +37,28 @@ iso3_to_regions <- function(iso3,
 #'
 #' @export
 is_who_member <- function(iso3) {
-  data("countries", envir = environment())
+  utils::data("countries", envir = environment())
   members <- countries[["who_member_state"]]
   idx <- match(iso3, countries[["iso3"]])
   members[idx]
 }
 
-#' Check if ISO3 codes present in `countries` data frame.
+#' Check if country codes are present in `countries` data frame.
 #'
-#' `valid_iso3()` takes in a vector of ISO3 codes and returns a logical vector
+#' `valid_codes()` takes in a vector of country codes and returns a logical vector
 #' on whether that country code is present in `countries[["iso3"]]`
 #'
-#' @param iso3 Character vector of ISO3 codes.
+#' @param codes Character vector of country codes.
+#' @param type A character value specifying the type of country code supplied.
+#' All possible values available through `country_code_types()`.
 #'
 #' @return Logical vector.
 #'
 #' @export
-valid_iso3 <- function(iso3) {
-  data("countries", envir = environment())
-  iso3 %in% countries[["iso3"]]
+valid_codes <- function(codes, type = "iso3") {
+  rlang::arg_match(type, country_code_types())
+  utils::data("countries", envir = environment())
+  codes %in% countries[["type"]]
 }
 
 #' Get country names from ISO3 country codes.
@@ -78,12 +81,12 @@ valid_iso3 <- function(iso3) {
 #'
 #' @export
 iso3_to_names <- function(iso3,
-                           org = "who",
-                           language = "en") {
+                          org = "who",
+                          language = "en") {
   rlang::arg_match(org, c("who", "un"))
   assert_who_language(org, language)
 
-  data("countries", envir = environment())
+  utils::data("countries", envir = environment())
   rgx <- sprintf("^%s_name_%s$", org, language)
   names <- countries[[which(grepl(rgx, names(countries)))]]
   idx <- match(iso3, countries[["iso3"]])
@@ -108,17 +111,36 @@ assert_who_language <- function(org, language) {
 #' vector specified by the user.
 #'
 #' @param iso3 Character vector of ISO3 codes.
-#' @param code A character value specifying the type of country code to return.
+#' @param type A character value specifying the type of country code to return.
 #' All possible values available through `country_code_types()`.
 #'
 #' @return Character vector.
 #'
 #' @export
-iso3_to_codes <- function(iso3, code) {
-  rlang::arg_match(code, country_code_types())
+iso3_to_codes <- function(iso3, type) {
+  rlang::arg_match(type, country_code_types())
 
-  data("countries", envir = environment())
-  codes <- countries[[code]]
+  utils::data("countries", envir = environment())
+  codes <- countries[[type]]
   idx <- match(iso3, countries[["iso3"]])
   codes[idx]
+}
+
+#' Get ISO3 codes from other country codes.
+#'
+#' `codes_to_iso3()` takes in a vector of country codes and returns ISO3 codes.
+#'
+#' @param codes Character vector of country codes.
+#' @param type A character value specifying the type of country code supplied.
+#' All possible values available through `country_code_types()`.
+#'
+#' @return Character vector.
+#'
+#' @export
+codes_to_iso3 <- function(codes, type) {
+  rlang::arg_match(type, country_code_types())
+  utils::data("countries", envir = environment())
+  iso3 <- countries[["iso3"]]
+  idx <- match(codes, countries[[type]])
+  iso3[idx]
 }

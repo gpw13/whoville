@@ -25,7 +25,6 @@ A data frame with 247 rows and 31 variables:
 \item{un_name_ru}{UN country name, Russian}
 \item{un_name_fr}{UN country name, French}
 \item{un_name_es}{UN country name, Spanish}
-\item{un_name_es}{UN country name, Spanish}
 \item{un_name_ar}{UN country name, Arabic}
 \item{un_name_zh}{UN country name, Chinese}
 \item{alt_name_en}{Alternative (non-official) country name, English}
