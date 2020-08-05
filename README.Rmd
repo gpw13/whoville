@@ -16,39 +16,65 @@ knitr::opts_chunk$set(
 # whotilities
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.com/caldwellst/whotilities.svg?branch=master)](https://travis-ci.com/caldwellst/whotilities)
 <!-- badges: end -->
 
-The goal of whotilities is to ...
+The goal of whotilities is to provide a package where useful and commonly needed functionality is
+made available to R users working at the World Health Organization. 
+At the moment, this is a set of functions to work with country
+codes and names, allowing easy conversion between names and codes and access to regions and
+WHO member status.
+
+## Functions
+
+* `names_to_code()` is the workhorse function that helps match country names and returns standardized country codes
+
+The other functions encourage a tidy R workflow where ISO3 codes are used as the unique identifier for each country.
+
+* `iso3_to_regions()` takes in a vector of ISO3 codes and returns specified region values.
+* `iso3_to_codes()` takes in a vector of ISO3 codes and returns specified country codes.
+* `iso3_to_names()` takes in a vector of ISO3 codes and returns specified country names.
+* `is_who_member()` takes in a vector of ISO3 codes and checks if they are a WHO member state or not.
+
+All of these functions are built on top of the `countries` data frame also exported
+with the package and developed off of public datasets provided by the World Health
+Organization and United Nations. Details available through `?countries`.
 
 ## Installation
 
-You can install the released version of whotilities from [CRAN](https://CRAN.R-project.org) with:
+You can install whotilities from Github with:
 
 ``` r
-install.packages("whotilities")
+devtools::install_github("caldwellst/whotilities")
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+If we have an unclean data frame with country names, we can use `names_to_codes()`
+to match these to ISO3 codes. The function matches the names vector across all possible
+names found in the `countries` data frame. ISO3 codes for exact matches are always returned,
+but the user has specific options for non-exact matches. They can be fuzzy matched (the default),
+always made NA, or require user input to confirm fuzzy matching results. Fuzzy matches
+always return a message to the user on the confirmed match. More details available through
+`?names_to_codes`.
 
-```{r example}
+```{r names_to_code}
 library(whotilities)
-## basic example code
+
+names_to_code(c("Venezuela", "Arentina", "afghanist"))
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Since these functions are vectorized, we can easily use them in a normal workflow, especially
+if we're using the `tidyverse`. Below, we can clean up our tidy names and get
+the correct UN region and income group for our countries, as well as its name
+in Chinese:
+```{r last_example}
+library(dplyr)
+df <- data.frame(c_names = c("Venezuela", "Arentina", "afghanist"))
 
-```{r cars}
-summary(cars)
+df %>%
+  mutate(iso3 = names_to_code(c_names),
+         un_region = iso3_to_regions(iso3, region = "un_region"),
+         wb_ig = iso3_to_regions(iso3, region = "wb_ig"),
+         name_zh = iso3_to_names(iso3, org = "un", language = "zh"))
 ```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

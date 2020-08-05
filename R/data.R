@@ -1,9 +1,10 @@
-#' Country metadata from the WHO, UN, and IHME.
+#' Country metadata from the WHO and UN.
 #'
 #' A dataset containing names, codes, and other attributes
-#' for countries included in WHO and UN datasets.
+#' for countries included in World Health Organization and
+#' United Nations datasets.
 #'
-#' @format A data frame with 247 rows and 31 variables:
+#' @format A data frame with `r nrow(countries)` rows and `r ncol(countries)` variables:
 #' \describe{
 #'   \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code}}
 #'   \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code}}
@@ -27,10 +28,11 @@
 #'   \item{un_name_ar}{UN country name, Arabic}
 #'   \item{un_name_zh}{UN country name, Chinese}
 #'   \item{alt_name_en}{Alternative (non-official) country name, English}
+#'   \item{alt_name_2_en}{Another alternative (non-official) country name, English}
 #'   \item{former_name_en}{Former country name, English}
 #'   \item{who_region_en}{WHO region name, English}
 #'   \item{who_region_code}{WHO region code}
-#'   \item{wb_ig_2017}{World Bank Income Group name, 2017 classification}
+#'   \item{wb_ig_2017_en}{World Bank Income Group name, 2017 classification}
 #'   \item{wb_ig_2017_code}{World Bank Income Group code, 2017 classification}
 #'   \item{un_region_en}{UN region name, English}
 #'   \item{un_region_code}{UN region code}

@@ -14,10 +14,10 @@ who_c <- read_excel("data-raw/who_countries.xlsx") %>%
             wmo = WMO,
             who_code = WHO,
             who_name_en = DisplayString,
-            who_member_state = WHOLEGALSTATUS %in% "m",
+            who_member_state = WHOLEGALSTATUS %in% "M",
             who_region_en = WHO_REGION,
             who_region_code = WHO_REGION_CODE,
-            wb_ig_2017 = WORLD_BANK_INCOME_GROUP,
+            wb_ig_2017_en = WORLD_BANK_INCOME_GROUP,
             wb_ig_2017_code = WORLD_BANK_INCOME_GROUP_CODE,
             who_name_es = SHORTNAMEES,
             who_name_fr = SHORTNAMEFR)
@@ -54,6 +54,7 @@ for (i in 1:5) {
 alt_c <- read_excel("data-raw/alt_countries.xlsx") %>%
   select(iso3,
          alt_name_en = altname,
+         alt_name_2_en = altname2,
          former_name_en = formername)
 
 # Merging together
