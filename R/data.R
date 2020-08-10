@@ -41,3 +41,28 @@
 #' @source \href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization country data}
 #' @source \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Country data}
 "countries"
+
+#' Country population data from the UN.
+#'
+#' A dataset containing ISO3 code, year, and gender disaggregated population
+#' figures for countries, using the most recent United Nations, Department
+#' of Economic and Social Affairs, Population Division estimates.
+#'
+#' Population data is based on the most recent estimates from the United Nations,
+#' Department of Economic and Social Affairs, Population Division. For years
+#' 2021 - 2100, the population model assumes medium fertility throughout that
+#' time. See the
+#' \href{https://population.un.org/wpp/DefinitionOfProjectionVariants/}{World
+#' Population Prospect's definition of projection variants} for more details
+#' on the assumptions and model used.
+#'
+#' @format A data frame with `r nrow(un_population)` rows and `r ncol(un_population)` variables:
+#' \describe{
+#'   \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code}}
+#'   \item{year}{Year, currently 1950 - 2100}
+#'   \item{female}{Total population - female}
+#'   \item{male}{Total population - male}
+#'   \item{total}{Total population}
+#' }
+#' @source \href{https://population.un.org/wpp/Download/Standard/Population/}{United Nations, Department of Economic and Social Affairs, Population Division (2019). World Population Prospects 2019, Online Edition. Rev. 1.}
+"un_population"

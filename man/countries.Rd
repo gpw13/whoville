@@ -5,7 +5,7 @@
 \alias{countries}
 \title{Country metadata from the WHO and UN.}
 \format{
-A data frame with 247 rows and 31 variables:
+A data frame with 248 rows and 31 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code}}

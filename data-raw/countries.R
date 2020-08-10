@@ -60,7 +60,7 @@ alt_c <- read_excel("data-raw/alt_countries.xlsx") %>%
 # Merging together
 
 countries <- left_join(who_c, un_c, by = "iso3") %>%
-  left_join(alt_c, by = "iso3") %>%
+  full_join(alt_c, by = "iso3") %>%
   select(iso3,
          iso2:who_code,
          m49,
