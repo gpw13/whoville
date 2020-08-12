@@ -16,7 +16,8 @@
 #'   \item{wmo}{\href{https://cpdb.wmo.int/}{World Meteorological Organizantion code}}
 #'   \item{who_code}{\href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization code}}
 #'   \item{m49}{\href{https://en.wikipedia.org/wiki/UN_M49}{United Nations M49 code}}
-#'   \item{who_member_state}{logical, is country a WHO member state?}
+#'   \item{who_member_state}{Logical, is country a WHO member state?}
+#'   \item{small_member_state}{Logical, is country a WHO member state with population <= 90,000?}
 #'   \item{who_name_en}{WHO country name, English}
 #'   \item{who_name_es}{WHO country name, Spanish}
 #'   \item{who_name_fr}{WHO country name, French}

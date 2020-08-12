@@ -1,5 +1,6 @@
-library(tidvyerse)
+library(tidyverse)
 library(readxl)
+library(wppdistro)
 
 # Adding in WHO data
 
@@ -72,5 +73,19 @@ countries <- left_join(who_c, un_c, by = "iso3") %>%
          un_name_ru:former_name_en,
          who_region_en:wb_ig_2017_code,
          un_region_en:un_subregion_code)
+
+# Getting small member states information
+
+small_countries <- wpp_population %>%
+  filter(year == 2018,
+         sex == "both",
+         total <= 90000) %>%
+  pull(iso3)
+
+small_member_state <- countries$iso3 %in% small_countries
+
+countries <- countries %>%
+  add_column(small_member_state,
+             .after = "who_member_state")
 
 usethis::use_data(countries, overwrite = TRUE)

@@ -5,7 +5,7 @@
 \alias{countries}
 \title{Country metadata from the WHO and UN.}
 \format{
-A data frame with 248 rows and 31 variables:
+A data frame with 248 rows and 32 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code}}
@@ -17,7 +17,8 @@ A data frame with 248 rows and 31 variables:
 \item{wmo}{\href{https://cpdb.wmo.int/}{World Meteorological Organizantion code}}
 \item{who_code}{\href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization code}}
 \item{m49}{\href{https://en.wikipedia.org/wiki/UN_M49}{United Nations M49 code}}
-\item{who_member_state}{logical, is country a WHO member state?}
+\item{who_member_state}{Logical, is country a WHO member state?}
+\item{small_member_state}{Logical, is country a WHO member state with population <= 90,000?}
 \item{who_name_en}{WHO country name, English}
 \item{who_name_es}{WHO country name, Spanish}
 \item{who_name_fr}{WHO country name, French}
