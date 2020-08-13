@@ -1,0 +1,2 @@
+#' @noRd
+utils::globalVariables("countries")
