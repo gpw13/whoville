@@ -1,12 +1,16 @@
 #' @noRd
 name_cols <- function() {
-  utils::data("countries", envir = environment())
+  utils::data("countries",
+              envir = environment(),
+              package = "whotilities")
   names(dplyr::select(countries, dplyr::contains("name")))
 }
 
 #' @noRd
 country_code_types <- function() {
-  utils::data("countries", envir = environment())
+  utils::data("countries",
+              envir = environment(),
+              package = "whotilities")
   names(countries[,1:10])
 }
 

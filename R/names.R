@@ -43,7 +43,9 @@ names_to_code <- function(names,
   rlang::arg_match(method, c("osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"))
   assert_p(p)
 
-  utils::data("countries", envir = environment())
+  utils::data("countries",
+              envir = environment(),
+              package = "whotilities")
 
   df <- dplyr::select(countries[,name_cols()],
                       dplyr::ends_with(language))

@@ -9,7 +9,9 @@
 #'
 #' @export
 is_who_member <- function(iso3) {
-  utils::data("countries", envir = environment())
+  utils::data("countries",
+              envir = environment(),
+              package = "whotilities")
   members <- countries[["who_member_state"]]
   idx <- match(iso3, countries[["iso3"]])
   members[idx] %in% TRUE
@@ -28,7 +30,9 @@ is_who_member <- function(iso3) {
 #'
 #' @export
 is_small_member_state <- function(iso3) {
-  utils::data("countries", envir = environment())
+  utils::data("countries",
+              envir = environment(),
+              package = "whotilities")
   members <- countries[["small_member_state"]]
   idx <- match(iso3, countries[["iso3"]])
   members[idx] %in% TRUE
