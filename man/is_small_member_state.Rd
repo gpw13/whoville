@@ -2,7 +2,7 @@
 % Please edit documentation in R/member_states.R
 \name{is_small_member_state}
 \alias{is_small_member_state}
-\title{Get membership status from ISO3 codes.}
+\title{Get small state membership status from ISO3 codes.}
 \usage{
 is_small_member_state(iso3)
 }
@@ -14,7 +14,7 @@ Logical vector.
 }
 \description{
 \code{is_small_member_state()} takes in a vector of ISO3 codes and returns a logical vector
-on whether that country is a  small WHO member state or not. In this instance,
-small member states are defined as member states with a 2018 total population <=
+on whether that country is a small WHO member state or not. In this instance,
+small member states are defined as member states with a total population <=
 90,000 in mid-year 2018, according to the World Population Prospects.
 }
