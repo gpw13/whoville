@@ -66,6 +66,32 @@ names_to_code <- function(names,
   unname(result)
 }
 
+#' Get ISO3  codes from names
+#'
+#' `names_to_iso3()` takes in a vector of country names and returns a vector of
+#' ISO3 codes.
+#'
+#' @inherit names_to_code details
+#' @inherit names_to_code return
+#' @inheritParams names_to_code
+#'
+#' @export
+names_to_iso3 <- function(names,
+                          language = "en",
+                          ignore_case = T,
+                          fuzzy_matching = "yes",
+                          method = "jw",
+                          p = 0.1) {
+  names_to_code(names = names,
+                type = "iso3",
+                language = language,
+                ignore_case = ignore_case,
+                fuzzy_matching = fuzzy_matching,
+                method = method,
+                p = p)
+}
+
+#'
 #' @noRd
 name_matching <- function(name,
                           df,

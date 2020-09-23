@@ -1,7 +1,7 @@
 Package: whotilities
 Type: Package
 Title: R Utilities for WHO R Users
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person("Seth", "Caldwell", email = "caldwellst@gmail.com", role = c("aut", "cre"))
 Description: Provides a set of utility functions commonly needed by WHO R users. Currently
     includes functions to streamline working with country names and codes.

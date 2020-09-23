@@ -30,6 +30,7 @@ WHO member status.
 Some functions are built to help you turn names or country codes into ISO3 codes:
 
 * `names_to_code()` is the workhorse function that helps match country names and returns standardized country codes.
+* `names_to_iso3()` is a wrapper around `names_to_code()` that automatically outputs ISO3 code.
 * `codes_to_iso3()` converts other country codes into ISO3 format.
 * `valid_codes()` lets you quickly check which country codes in a vector are recognized by the whotilities package.
 

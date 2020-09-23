@@ -24,16 +24,16 @@ is_who_member <- function(iso3) {
 #' small member states are defined as member states with a total population <=
 #' 90,000 in mid-year 2018, according to the World Population Prospects.
 #'
-#' @param iso3 Character vector of ISO3 codes.
+#' @inheritParams is_who_member
 #'
 #' @return Logical vector.
 #'
 #' @export
-is_small_member_state <- function(iso3) {
+is_small_who_member <- function(iso3) {
   utils::data("countries",
               envir = environment(),
               package = "whotilities")
-  members <- countries[["small_member_state"]]
+  members <- countries[["who_small_member_state"]]
   idx <- match(iso3, countries[["iso3"]])
   members[idx] %in% TRUE
 }
@@ -45,13 +45,13 @@ is_small_member_state <- function(iso3) {
 #' large member states are defined as member states with a total population >
 #' 90,000 in mid-year 2018, according to the World Population Prospects.
 #'
-#' @param iso3 Character vector of ISO3 codes.
+#' @inheritParams is_who_member
 #'
 #' @return Logical vector.
 #'
 #' @export
-is_large_member_state <- function(iso3) {
-  is_who_member(iso3) & !is_small_member_state(iso3)
+is_large_who_member <- function(iso3) {
+  is_who_member(iso3) & !is_small_who_member(iso3)
 }
 
 #' Get ISO3 codes for WHO member states.
@@ -76,8 +76,8 @@ who_member_states <- function(include = c("all", "small", "large")) {
               package = "whotilities")
   x <- countries[["iso3"]]
   funs <- c("all" = "is_who_member",
-            "small" = "is_small_member_state",
-            "large" = "is_large_member_state")
+            "small" = "is_small_who_member",
+            "large" = "is_large_who_member")
   which_f <- funs[match(include, names(funs))]
   f <- match.fun(which_f)
   x[f(x)]

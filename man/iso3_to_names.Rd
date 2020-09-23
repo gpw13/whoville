@@ -4,7 +4,12 @@
 \alias{iso3_to_names}
 \title{Get country names from ISO3 country codes.}
 \usage{
-iso3_to_names(iso3, org = "who", language = "en")
+iso3_to_names(
+  iso3,
+  org = c("who", "un"),
+  type = c("short", "formal"),
+  language = c("en", "es", "ru", "ar", "zh", "fr")
+)
 }
 \arguments{
 \item{iso3}{Character vector of ISO3 codes.}
@@ -12,18 +17,19 @@ iso3_to_names(iso3, org = "who", language = "en")
 \item{org}{Official names of which organization to return. Can be
 either "who" (default) or "un".}
 
+\item{type}{"short" (default) or "formal" name to return. Only used when org is "who".}
+
 \item{language}{A character value specifying the language of the country names.
 Should be specified using the ISO2 language code. Defaults to "en", but matching
 available for all 6 official WHO languages. Possible values are "en", "es",
-"ar", "fr", "ru", and "zh". Only "en", "es" and "fr" available if org is
-"who".}
+"ar", "fr", "ru", and "zh".}
 }
 \value{
 Character vector.
 }
 \description{
 \code{iso3_to_names()} takes in a vector of ISO3 codes and returns names as
-specified by the user. Currently, this can be United Nations names in
-all 6 official languages or World Health Organization names in English,
-Spanish, or French.
+specified by the user. Currently, this can be World Health Organization names,
+both short and formal, in all 6 official languages and United Nations names in
+all 6 official languages.
 }

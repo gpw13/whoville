@@ -6,38 +6,71 @@
 #'
 #' @format A data frame with `r nrow(countries)` rows and `r ncol(countries)` variables:
 #' \describe{
-#'   \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code}}
-#'   \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code}}
-#'   \item{ds}{\href{http://www.unece.org/trans/roadsafe/distinguishing_signs.html}{distinguishing sign of state of registration}}
-#'   \item{fips}{USA government \href{https://en.wikipedia.org/wiki/List_of_FIPS_country_codes}{FIPS 10-4 code}}
-#'   \item{ioc}{\href{https://en.wikipedia.org/wiki/List_of_IOC_country_codes}{International Olympic Committee code}}
-#'   \item{itu}{\href{https://en.wikipedia.org/wiki/List_of_IOC_country_codes}{International Telecommunication Union code}}
-#'   \item{marc}{\href{http://www.loc.gov/marc/countries/cou_home.html}{MARC 21 codes}}
-#'   \item{wmo}{\href{https://cpdb.wmo.int/}{World Meteorological Organizantion code}}
-#'   \item{who_code}{\href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization code}}
-#'   \item{m49}{\href{https://en.wikipedia.org/wiki/UN_M49}{United Nations M49 code}}
+#'   \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code.}}
+#'   \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code.}}
+#'   \item{iso_numeric}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_numeric}{ISO numeric code.}}
+#'   \item{who_code}{\href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization code.}}
+#'   \item{m49}{\href{https://en.wikipedia.org/wiki/UN_M49}{United Nations M49 code.}}
+#'   \item{sovereign_iso3}{ISO3 code of sovereign nation. Value is `NA` if sovereign itself.}
 #'   \item{who_member_state}{Logical, is country a WHO member state?}
-#'   \item{small_member_state}{Logical, is country a WHO member state with population <= 90,000?}
-#'   \item{who_name_en}{WHO country name, English}
-#'   \item{who_name_es}{WHO country name, Spanish}
-#'   \item{who_name_fr}{WHO country name, French}
-#'   \item{un_name_en}{UN country name, English}
-#'   \item{un_name_ru}{UN country name, Russian}
-#'   \item{un_name_fr}{UN country name, French}
-#'   \item{un_name_es}{UN country name, Spanish}
-#'   \item{un_name_ar}{UN country name, Arabic}
-#'   \item{un_name_zh}{UN country name, Chinese}
-#'   \item{alt_name_en}{Alternative (non-official) country name, English}
-#'   \item{alt_name_2_en}{Another alternative (non-official) country name, English}
-#'   \item{former_name_en}{Former country name, English}
-#'   \item{who_region_en}{WHO region name, English}
-#'   \item{who_region_code}{WHO region code}
-#'   \item{wb_ig_2017_en}{World Bank Income Group name, 2017 classification}
-#'   \item{wb_ig_2017_code}{World Bank Income Group code, 2017 classification}
-#'   \item{un_region_en}{UN region name, English}
-#'   \item{un_region_code}{UN region code}
-#'   \item{un_subregion_en}{UN sub-region name, English}
-#'   \item{un_subregion_code}{UN sub-region code}
+#'   \item{who_small_member_state}{Logical, is country a WHO member state with population <= 90,000?}
+#'   \item{who_short_name_en}{WHO country name, short, English.}
+#'   \item{who_formal_name_en}{WHO country name, formal, English. Only available for official member states.}
+#'   \item{who_short_name_ar}{WHO country name, short, Arabic.}
+#'   \item{who_formal_name_ar}{WHO country name, formal, Arabic. Only available for official member states.}
+#'   \item{who_short_name_es}{WHO country name, short, Spanish.}
+#'   \item{who_formal_name_es}{WHO country name, formal, Spanish. Only available for official member states.}
+#'   \item{who_short_name_fr}{WHO country name, short, French.}
+#'   \item{who_formal_name_fr}{WHO country name, formal, French. Only available for official member states.}
+#'   \item{who_short_name_ru}{WHO country name, short, Russian.}
+#'   \item{who_formal_name_ru}{WHO country name, formal, Russian. Only available for official member states.}
+#'   \item{who_short_name_zh}{WHO country name, short, Chinese.}
+#'   \item{who_formal_name_zh}{WHO country name, formal, Chinese. Only available for official member states.}
+#'   \item{un_name_en}{UN country name, English.}
+#'   \item{un_name_ru}{UN country name, Russian.}
+#'   \item{un_name_fr}{UN country name, French.}
+#'   \item{un_name_es}{UN country name, Spanish.}
+#'   \item{un_name_ar}{UN country name, Arabic.}
+#'   \item{un_name_zh}{UN country name, Chinese.}
+#'   \item{alt_name_en}{Alternative (non-official) country name, English.}
+#'   \item{alt_name_2_en}{Another alternative (non-official) country name, English.}
+#'   \item{former_name_en}{Former country name, English.}
+#'   \item{who_region}{WHO region code.}
+#'   \item{un_region}{UN region code.}
+#'   \item{un_subregion}{UN sub-region code.}
+#'   \item{wb_ig_1987}{World Bank Income Group code, 1987 (FY 1989) classification.}
+#'   \item{wb_ig_1988}{World Bank Income Group code, 1988 (FY 1990) classification.}
+#'   \item{wb_ig_1989}{World Bank Income Group code, 1989 (FY 1991) classification.}
+#'   \item{wb_ig_1990}{World Bank Income Group code, 1990 (FY 1992) classification.}
+#'   \item{wb_ig_1991}{World Bank Income Group code, 1991 (FY 1993) classification.}
+#'   \item{wb_ig_1992}{World Bank Income Group code, 1992 (FY 1994) classification.}
+#'   \item{wb_ig_1993}{World Bank Income Group code, 1993 (FY 1995) classification.}
+#'   \item{wb_ig_1994}{World Bank Income Group code, 1994 (FY 1996) classification.}
+#'   \item{wb_ig_1995}{World Bank Income Group code, 1995 (FY 1997) classification.}
+#'   \item{wb_ig_1996}{World Bank Income Group code, 1996 (FY 1998) classification.}
+#'   \item{wb_ig_1997}{World Bank Income Group code, 1997 (FY 1999) classification.}
+#'   \item{wb_ig_1998}{World Bank Income Group code, 1998 (FY 2000) classification.}
+#'   \item{wb_ig_1999}{World Bank Income Group code, 1999 (FY 2001) classification.}
+#'   \item{wb_ig_2000}{World Bank Income Group code, 2000 (FY 2002) classification.}
+#'   \item{wb_ig_2001}{World Bank Income Group code, 2001 (FY 2003) classification.}
+#'   \item{wb_ig_2002}{World Bank Income Group code, 2002 (FY 2004) classification.}
+#'   \item{wb_ig_2003}{World Bank Income Group code, 2003 (FY 2005) classification.}
+#'   \item{wb_ig_2004}{World Bank Income Group code, 2004 (FY 2006) classification.}
+#'   \item{wb_ig_2005}{World Bank Income Group code, 2005 (FY 2007) classification.}
+#'   \item{wb_ig_2006}{World Bank Income Group code, 2006 (FY 2008) classification.}
+#'   \item{wb_ig_2007}{World Bank Income Group code, 2007 (FY 2009) classification.}
+#'   \item{wb_ig_2008}{World Bank Income Group code, 2008 (FY 2010) classification.}
+#'   \item{wb_ig_2009}{World Bank Income Group code, 2009 (FY 2011) classification.}
+#'   \item{wb_ig_2010}{World Bank Income Group code, 2010 (FY 2012) classification.}
+#'   \item{wb_ig_2011}{World Bank Income Group code, 2011 (FY 2013) classification.}
+#'   \item{wb_ig_2012}{World Bank Income Group code, 2012 (FY 2014) classification.}
+#'   \item{wb_ig_2013}{World Bank Income Group code, 2013 (FY 2015) classification.}
+#'   \item{wb_ig_2014}{World Bank Income Group code, 2014 (FY 2016) classification.}
+#'   \item{wb_ig_2015}{World Bank Income Group code, 2015 (FY 2017) classification.}
+#'   \item{wb_ig_2016}{World Bank Income Group code, 2016 (FY 2018) classification.}
+#'   \item{wb_ig_2017}{World Bank Income Group code, 2017 (FY 2019) classification.}
+#'   \item{wb_ig_2018}{World Bank Income Group code, 2018 (FY 2020) classification.}
+#'   \item{wb_ig_2019}{World Bank Income Group code, 2019 (FY 2021) classification.}
 #' }
 #' @source \href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization country data}
 #' @source \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Country data}

@@ -9,7 +9,7 @@ codes_to_iso3(codes, type)
 \arguments{
 \item{codes}{Character vector of country codes.}
 
-\item{type}{A character value specifying the type of country code supplied.
+\item{type}{A character value specifying the type of country code to return.
 All possible values available through \code{country_code_types()}.}
 }
 \value{

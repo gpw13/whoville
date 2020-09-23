@@ -7,22 +7,26 @@
 #' @param iso3 Character vector of ISO3 codes.
 #' @param region Type of region to return. Can be
 #' any of "who_region" (default), "un_region", "un_subregion", or "wb_ig".
-#' @param return Either "code" (default) or language code to specify the region
-#' name. Only "en" currently available.
+#' @param year For World Bank Income Group only, specify the year to return.
 #'
 #' @return Character vector.
 #'
 #' @export
 iso3_to_regions <- function(iso3,
                             region = "who_region",
-                            return = "code") {
+                            year = max(wb_ig_years())) {
   rlang::arg_match(region, c("who_region", "un_region", "un_subregion", "wb_ig"))
-  rlang::arg_match(return, c("en", "code"))
+  if (region == "wb_ig") {
+    assert_wb_ig_years(year)
+    rgx <- paste(region, year, sep = "_")
+  } else {
+    rgx <- region
+  }
 
   utils::data("countries",
               envir = environment(),
               package = "whotilities")
-  rgx <- sprintf("^%s.*%s$", region, return)
+
   regions <- countries[[which(grepl(rgx, names(countries)))]]
   idx <- match(iso3, countries[["iso3"]])
   regions[idx]
@@ -70,28 +74,32 @@ valid_codes <- function(codes, type = "iso3") {
 #' Get country names from ISO3 country codes.
 #'
 #' `iso3_to_names()` takes in a vector of ISO3 codes and returns names as
-#' specified by the user. Currently, this can be United Nations names in
-#' all 6 official languages or World Health Organization names in English,
-#' Spanish, or French.
+#' specified by the user. Currently, this can be World Health Organization names,
+#' both short and formal, in all 6 official languages and United Nations names in
+#' all 6 official languages.
 #'
 #' @param iso3 Character vector of ISO3 codes.
 #' @param org Official names of which organization to return. Can be
 #' either "who" (default) or "un".
+#' @param type "short" (default) or "formal" name to return. Only used when org is "who".
 #' @param language A character value specifying the language of the country names.
 #' Should be specified using the ISO2 language code. Defaults to "en", but matching
 #' available for all 6 official WHO languages. Possible values are "en", "es",
-#' "ar", "fr", "ru", and "zh". Only "en", "es" and "fr" available if org is
-#' "who".
+#' "ar", "fr", "ru", and "zh".
 #'
 #' @return Character vector.
 #'
 #' @export
 iso3_to_names <- function(iso3,
-                          org = "who",
-                          language = "en") {
-  rlang::arg_match(org, c("who", "un"))
-  assert_who_language(org, language)
-
+                          org = c("who", "un"),
+                          type = c("short", "formal"),
+                          language = c("en", "es", "ru", "ar", "zh", "fr")) {
+  org <- rlang::arg_match(org)
+  language <- rlang::arg_match(language)
+  if (org == "who") {
+    type <- rlang::arg_match(type)
+    org <- paste(org, type, sep = "_")
+  }
   utils::data("countries",
               envir = environment(),
               package = "whotilities")
@@ -99,18 +107,6 @@ iso3_to_names <- function(iso3,
   names <- countries[[which(grepl(rgx, names(countries)))]]
   idx <- match(iso3, countries[["iso3"]])
   names[idx]
-}
-
-#' @noRd
-assert_who_language <- function(org, language) {
-  if (org == "who") {
-    if (!(language %in% c("en", "es", "fr"))) {
-      stop('`language` must be one of "en", "es", or "fr" if `org` == "who"',
-           call. = FALSE)
-    }
-  } else {
-    rlang::arg_match(language, c("en", "es", "ru", "ar", "zh", "fr"))
-  }
 }
 
 #' Get country codes from ISO3 country codes.
@@ -141,8 +137,7 @@ iso3_to_codes <- function(iso3, type) {
 #' `codes_to_iso3()` takes in a vector of country codes and returns ISO3 codes.
 #'
 #' @param codes Character vector of country codes.
-#' @param type A character value specifying the type of country code supplied.
-#' All possible values available through `country_code_types()`.
+#' @inheritParams iso3_to_codes
 #'
 #' @return Character vector.
 #'
