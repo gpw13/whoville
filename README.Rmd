@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # whoville
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/caldwellst/whoville.svg?branch=master)](https://travis-ci.com/caldwellst/whoville)
+[![Travis build status](https://travis-ci.com/caldwellst/whotilities.svg?branch=master)](https://travis-ci.com/caldwellst/whotilities)
 <!-- badges: end -->
 
 The goal of whoville is to provide a package where useful and commonly needed functionality is
