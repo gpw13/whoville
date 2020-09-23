@@ -25,7 +25,7 @@ iso3_to_regions <- function(iso3,
 
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
 
   regions <- countries[[which(grepl(rgx, names(countries)))]]
   idx <- match(iso3, countries[["iso3"]])
@@ -45,7 +45,7 @@ iso3_to_regions <- function(iso3,
 is_who_member <- function(iso3) {
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
   members <- countries[["who_member_state"]]
   idx <- match(iso3, countries[["iso3"]])
   members[idx] %in% TRUE
@@ -67,7 +67,7 @@ valid_codes <- function(codes, type = "iso3") {
   rlang::arg_match(type, country_code_types())
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
   codes %in% countries[["type"]]
 }
 
@@ -102,7 +102,7 @@ iso3_to_names <- function(iso3,
   }
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
   rgx <- sprintf("^%s_name_%s$", org, language)
   names <- countries[[which(grepl(rgx, names(countries)))]]
   idx <- match(iso3, countries[["iso3"]])
@@ -126,7 +126,7 @@ iso3_to_codes <- function(iso3, type) {
 
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
   codes <- countries[[type]]
   idx <- match(iso3, countries[["iso3"]])
   codes[idx]
@@ -146,7 +146,7 @@ codes_to_iso3 <- function(codes, type) {
   rlang::arg_match(type, country_code_types())
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
   iso3 <- countries[["iso3"]]
   idx <- match(codes, countries[[type]])
   iso3[idx]

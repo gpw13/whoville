@@ -1,8 +1,8 @@
-#' Country metadata from the WHO and UN.
+#' Country metadata from the WHO, UN, and WB.
 #'
 #' A dataset containing names, codes, and other attributes
-#' for countries included in World Health Organization and
-#' United Nations datasets.
+#' for countries included in World Health Organization,
+#' United Nations and World Bank datasets.
 #'
 #' @format A data frame with `r nrow(countries)` rows and `r ncol(countries)` variables:
 #' \describe{
@@ -74,5 +74,6 @@
 #' }
 #' @source \href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization country data}
 #' @source \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Country data}
+#' @source \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups}
 "countries"
 

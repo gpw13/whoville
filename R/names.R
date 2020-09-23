@@ -45,7 +45,7 @@ names_to_code <- function(names,
 
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
 
   df <- dplyr::select(countries[,name_cols()],
                       dplyr::ends_with(language))

@@ -11,7 +11,7 @@
 is_who_member <- function(iso3) {
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
   members <- countries[["who_member_state"]]
   idx <- match(iso3, countries[["iso3"]])
   members[idx] %in% TRUE
@@ -32,7 +32,7 @@ is_who_member <- function(iso3) {
 is_small_who_member <- function(iso3) {
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
   members <- countries[["who_small_member_state"]]
   idx <- match(iso3, countries[["iso3"]])
   members[idx] %in% TRUE
@@ -73,7 +73,7 @@ who_member_states <- function(include = c("all", "small", "large")) {
   include <- rlang::arg_match(include)
   utils::data("countries",
               envir = environment(),
-              package = "whotilities")
+              package = "whoville")
   x <- countries[["iso3"]]
   funs <- c("all" = "is_who_member",
             "small" = "is_small_who_member",
