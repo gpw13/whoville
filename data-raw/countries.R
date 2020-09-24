@@ -75,7 +75,8 @@ alt_c <- read_excel("data-raw/alt_countries.xlsx") %>%
   select(iso3,
          alt_name_en = altname,
          alt_name_2_en = altname2,
-         former_name_en = formername)
+         former_name_en = formername,
+         former_name_2_en = formername2)
 
 # Merging together
 
@@ -89,7 +90,7 @@ countries <- left_join(xmart_c, un_c, by = "iso3") %>%
          who_member_state,
          who_short_name_en:who_formal_name_zh,
          un_name_en,
-         un_name_ru:former_name_en,
+         un_name_ru:former_name_2_en,
          who_region,
          un_region:un_subregion,
          wb_ig_1987:wb_ig_2019)
