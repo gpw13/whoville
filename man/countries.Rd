@@ -3,9 +3,9 @@
 \docType{data}
 \name{countries}
 \alias{countries}
-\title{Country metadata from the WHO and UN.}
+\title{Country metadata from the WHO, UN, and WB.}
 \format{
-A data frame with 248 rows and 65 variables:
+A data frame with 248 rows and 66 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code.}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code.}}
@@ -35,7 +35,8 @@ A data frame with 248 rows and 65 variables:
 \item{un_name_zh}{UN country name, Chinese.}
 \item{alt_name_en}{Alternative (non-official) country name, English.}
 \item{alt_name_2_en}{Another alternative (non-official) country name, English.}
-\item{former_name_en}{Former country name, English.}
+\item{former_name_en}{Former country (non-official) name, English.}
+\item{former_name_2_en}{Another former (non-official) country name, English.}
 \item{who_region}{WHO region code.}
 \item{un_region}{UN region code.}
 \item{un_subregion}{UN sub-region code.}
@@ -78,13 +79,15 @@ A data frame with 248 rows and 65 variables:
 \href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization country data}
 
 \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Country data}
+
+\href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups}
 }
 \usage{
 countries
 }
 \description{
 A dataset containing names, codes, and other attributes
-for countries included in World Health Organization and
-United Nations datasets.
+for countries included in World Health Organization,
+United Nations and World Bank datasets.
 }
 \keyword{datasets}
