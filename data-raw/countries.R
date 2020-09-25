@@ -75,6 +75,7 @@ alt_c <- read_excel("data-raw/alt_countries.xlsx") %>%
   select(iso3,
          alt_name_en = altname,
          alt_name_2_en = altname2,
+         alt_name_3_en = altname3,
          former_name_en = formername,
          former_name_2_en = formername2)
 
