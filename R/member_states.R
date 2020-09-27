@@ -75,10 +75,12 @@ who_member_states <- function(include = c("all", "small", "large")) {
               envir = environment(),
               package = "whoville")
   x <- countries[["iso3"]]
-  funs <- c("all" = "is_who_member",
-            "small" = "is_small_who_member",
-            "large" = "is_large_who_member")
-  which_f <- funs[match(include, names(funs))]
-  f <- match.fun(which_f)
-  x[f(x)]
+  if (include == "small") {
+    x <- x[is_small_who_member(x)]
+  } else if (include == "large") {
+    x <- x[is_large_who_member(x)]
+  } else {
+    x <- x[is_who_member(x)]
+  }
+  x
 }
