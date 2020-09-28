@@ -23,12 +23,8 @@ iso3_to_regions <- function(iso3,
     rgx <- region
   }
 
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-
-  regions <- countries[[which(grepl(rgx, names(countries)))]]
-  idx <- match(iso3, countries[["iso3"]])
+  regions <- whoville::countries[[which(grepl(rgx, names(whoville::countries)))]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
   regions[idx]
 }
 
@@ -43,11 +39,8 @@ iso3_to_regions <- function(iso3,
 #'
 #' @export
 is_who_member <- function(iso3) {
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  members <- countries[["who_member_state"]]
-  idx <- match(iso3, countries[["iso3"]])
+  members <- whoville::countries[["who_member_state"]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
   members[idx] %in% TRUE
 }
 
@@ -65,10 +58,7 @@ is_who_member <- function(iso3) {
 #' @export
 valid_codes <- function(codes, type = "iso3") {
   rlang::arg_match(type, country_code_types())
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  codes %in% countries[["type"]]
+  codes %in% whoville::countries[["type"]]
 }
 
 #' Get country names from ISO3 country codes.
@@ -100,12 +90,10 @@ iso3_to_names <- function(iso3,
     type <- rlang::arg_match(type)
     org <- paste(org, type, sep = "_")
   }
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
+
   rgx <- sprintf("^%s_name_%s$", org, language)
-  names <- countries[[which(grepl(rgx, names(countries)))]]
-  idx <- match(iso3, countries[["iso3"]])
+  names <- whoville::countries[[which(grepl(rgx, names(whoville::countries)))]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
   names[idx]
 }
 
@@ -124,11 +112,8 @@ iso3_to_names <- function(iso3,
 iso3_to_codes <- function(iso3, type) {
   rlang::arg_match(type, country_code_types())
 
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  codes <- countries[[type]]
-  idx <- match(iso3, countries[["iso3"]])
+  codes <- whoville::countries[[type]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
   codes[idx]
 }
 
@@ -144,10 +129,8 @@ iso3_to_codes <- function(iso3, type) {
 #' @export
 codes_to_iso3 <- function(codes, type) {
   rlang::arg_match(type, country_code_types())
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  iso3 <- countries[["iso3"]]
-  idx <- match(codes, countries[[type]])
+
+  iso3 <- whoville::countries[["iso3"]]
+  idx <- match(codes, whoville::countries[[type]])
   iso3[idx]
 }

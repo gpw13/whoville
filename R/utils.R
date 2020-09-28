@@ -1,9 +1,6 @@
 #' @noRd
 name_cols <- function() {
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  names(dplyr::select(countries, dplyr::contains("name")))
+  names(dplyr::select(whoville::countries, dplyr::contains("name")))
 }
 
 #' Country code types available
@@ -17,10 +14,7 @@ name_cols <- function() {
 #'
 #' @export
 country_code_types <- function() {
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  nms <- names(countries)
+  nms <- names(whoville::countries)
   nms[1:match("m49", nms)]
 }
 
@@ -33,10 +27,7 @@ country_code_types <- function() {
 #'
 #' @export
 wb_ig_years <- function() {
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  nms <- names(countries)
+  nms <- names(whoville::countries)
   nms <- nms[grepl("wb_ig_", nms)]
   as.numeric(gsub("[^0-9]", "", nms))
 }

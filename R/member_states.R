@@ -9,11 +9,8 @@
 #'
 #' @export
 is_who_member <- function(iso3) {
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  members <- countries[["who_member_state"]]
-  idx <- match(iso3, countries[["iso3"]])
+  members <- whoville::countries[["who_member_state"]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
   members[idx] %in% TRUE
 }
 
@@ -30,11 +27,8 @@ is_who_member <- function(iso3) {
 #'
 #' @export
 is_small_who_member <- function(iso3) {
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  members <- countries[["who_small_member_state"]]
-  idx <- match(iso3, countries[["iso3"]])
+  members <- whoville::countries[["who_small_member_state"]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
   members[idx] %in% TRUE
 }
 
@@ -71,10 +65,7 @@ is_large_who_member <- function(iso3) {
 #' @export
 who_member_states <- function(include = c("all", "small", "large")) {
   include <- rlang::arg_match(include)
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-  x <- countries[["iso3"]]
+  x <- whoville::countries[["iso3"]]
   if (include == "small") {
     x <- x[is_small_who_member(x)]
   } else if (include == "large") {

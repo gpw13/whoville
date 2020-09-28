@@ -43,11 +43,7 @@ names_to_code <- function(names,
   rlang::arg_match(method, c("osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"))
   assert_p(p)
 
-  utils::data("countries",
-              envir = environment(),
-              package = "whoville")
-
-  df <- dplyr::select(countries[,name_cols()],
+  df <- dplyr::select(whoville::countries[,name_cols()],
                       dplyr::ends_with(language))
   if (ignore_case) {
     df <- dplyr::mutate(df,
@@ -61,8 +57,7 @@ names_to_code <- function(names,
                    method = method,
                    p = p,
                    fm = fuzzy_matching,
-                   type = type,
-                   countries = countries)
+                   type = type)
   unname(result)
 }
 
@@ -98,14 +93,13 @@ name_matching <- function(name,
                           method,
                           p,
                           fm,
-                          type,
-                          countries) {
+                          type) {
   scrs <- apply(df, 2, stringdist::stringdist, name, method = method, p = p)
   scr_mins <- apply(scrs, 1, function(x) suppressWarnings(min(x, na.rm = T)))
   row <- which.min(scr_mins)
   col <- apply(scrs, 1, which.min)[[row]]
   fit <- df[row, col]
-  fuzz_result <- countries[[type]][row]
+  fuzz_result <- whoville::countries[[type]][row]
   if (min(scr_mins) != 0) {
     if (fm == "no") {
       result <- NA_character_
