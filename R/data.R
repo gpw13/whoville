@@ -74,8 +74,8 @@
 #'   \item{wb_ig_2018}{World Bank Income Group code, 2018 (FY 2020) classification.}
 #'   \item{wb_ig_2019}{World Bank Income Group code, 2019 (FY 2021) classification.}
 #' }
-#' @source \href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization country data}
-#' @source \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Country data}
-#' @source \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups}
+#' @source \href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization country reference table, accessed September 23 2020.}
+#' @source \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Statistics Division, Country or Area Codes for Statistical Use tables; accessed August 15 2020.}
+#' @source \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, accessed August 15 2020.}
 "countries"
 
