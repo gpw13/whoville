@@ -7,7 +7,7 @@ whoville
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.com/caldwellst/whotilities.svg?branch=master)](https://travis-ci.com/caldwellst/whotilities)
+status](https://travis-ci.com/caldwellst/whoville.svg?branch=master)](https://travis-ci.com/caldwellst/whoville)
 <!-- badges: end -->
 
 The goal of whoville is to provide a package where useful and commonly
