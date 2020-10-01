@@ -8,6 +8,8 @@ whoville
 
 [![Travis build
 status](https://travis-ci.com/caldwellst/whoville.svg?branch=master)](https://travis-ci.com/caldwellst/whoville)
+[![R build
+status](https://github.com/caldwellst/whoville/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/whoville/actions)
 <!-- badges: end -->
 
 The goal of whoville is to provide a package country reference data
