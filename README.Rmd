@@ -19,11 +19,11 @@ knitr::opts_chunk$set(
 [![Travis build status](https://travis-ci.com/caldwellst/whoville.svg?branch=master)](https://travis-ci.com/caldwellst/whoville)
 <!-- badges: end -->
 
-The goal of whoville is to provide a package where useful and commonly needed functionality is
-made available to R users working at the World Health Organization. 
-At the moment, this is a set of functions to work with country
-codes and names, allowing easy conversion between names and codes and access to regions and
-WHO member status.
+The goal of whoville is to provide a package country reference data published by
+the World Health Organization, United Nations and World Bank easily accessible in R. 
+At the moment, this is a reference dataset and set of functions to work with country
+codes and names, allowing easy conversion between names and codes as well as easy
+access to region codes, WHO member status, and other published country metadata.
 
 ## Functions
 
