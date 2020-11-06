@@ -101,7 +101,7 @@ countries <- left_join(xmart_c, un_c, by = "iso3") %>%
 small_countries <- wpp_population %>%
   filter(year == 2018,
          sex == "both",
-         total <= 100000) %>%
+         total < 90000) %>%
   pull(iso3)
 
 who_small_member_state <- countries$iso3 %in% small_countries

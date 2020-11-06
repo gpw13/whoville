@@ -77,11 +77,11 @@ A data frame with 248 rows and 67 variables:
 }
 }
 \source{
-\href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization country data}
+\href{https://portal-uat.who.int/xmart4/REFMART}{World Health Organization country reference table, accessed September 23 2020.}
 
-\href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Country data}
+\href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Statistics Division, Country or Area Codes for Statistical Use tables; accessed August 15 2020.}
 
-\href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups}
+\href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, accessed August 15 2020.}
 }
 \usage{
 countries
