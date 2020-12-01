@@ -114,7 +114,7 @@ name_matching <- function(name,
           result <- readline(sprintf("Confirm the correct %s code for %s. Type 'N/A' to skip this country: ",
                                      toupper(type),
                                      name))
-          if (result %in% c("N/A", countries[[type]])) {
+          if (result %in% c("N/A", whoville::countries[[type]])) {
             check <- F
             if (result == "N/A") result <- NA_character_
           } else {
