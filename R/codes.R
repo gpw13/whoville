@@ -8,40 +8,35 @@
 #' @param region Type of region to return. Can be
 #' any of "who_region" (default), "un_region", "un_subregion", or "wb_ig".
 #' @param year For World Bank Income Group only, specify the year to return.
+#' @param name For UN region and subregion only. If `TRUE`, return official UN
+#'     name instead of M49 code.
+#' @param language For UN region and subregion only, if returning name.
+#'     A character value specifying the language of the country names.
+#'     Should be specified using the ISO2 language code.
 #'
 #' @return Character vector.
 #'
 #' @export
 iso3_to_regions <- function(iso3,
-                            region = "who_region",
-                            year = max(wb_ig_years())) {
-  rlang::arg_match(region, c("who_region", "un_region", "un_subregion", "wb_ig"))
+                            region = c("who_region", "un_region", "un_subregion", "wb_ig"),
+                            year = max(wb_ig_years()),
+                            name = FALSE,
+                            language = c("en", "es", "ru", "ar", "zh", "fr")) {
+  region <- rlang::arg_match(region)
+
   if (region == "wb_ig") {
     assert_wb_ig_years(year)
-    rgx <- paste(region, year, sep = "_")
+    mtch <- paste(region, year, sep = "_")
+  } else if (region %in% c("un_region", "un_subregion") && name) {
+    language <- rlang::arg_match(language)
+    mtch <- paste(region, "name", language, sep = "_")
   } else {
-    rgx <- region
+    mtch <- region
   }
 
-  regions <- whoville::countries[[which(grepl(rgx, names(whoville::countries)))]]
+  regions <- whoville::countries[[mtch]]
   idx <- match(iso3, whoville::countries[["iso3"]])
   regions[idx]
-}
-
-#' Get membership status from ISO3 codes.
-#'
-#' `is_who_member()` takes in a vector of ISO3 codes and returns a logical vector
-#' on whether that country is a WHO member state or not.
-#'
-#' @param iso3 Character vector of ISO3 codes.
-#'
-#' @return Logical vector.
-#'
-#' @export
-is_who_member <- function(iso3) {
-  members <- whoville::countries[["who_member_state"]]
-  idx <- match(iso3, whoville::countries[["iso3"]])
-  members[idx] %in% TRUE
 }
 
 #' Check if country codes are present in `countries` data frame.

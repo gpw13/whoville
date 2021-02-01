@@ -5,7 +5,7 @@
 \alias{countries}
 \title{Country metadata from the WHO, UN, and WB.}
 \format{
-A data frame with 248 rows and 68 variables:
+A data frame with 248 rows and 82 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code.}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code.}}
@@ -13,8 +13,10 @@ A data frame with 248 rows and 68 variables:
 \item{who_code}{\href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization code.}}
 \item{m49}{\href{https://en.wikipedia.org/wiki/UN_M49}{United Nations M49 code.}}
 \item{sovereign_iso3}{ISO3 code of sovereign nation. Value is \code{NA} if sovereign itself.}
-\item{who_member_state}{Logical, is country a WHO member state?}
-\item{who_small_member_state}{Logical, is country a WHO member state with population <= 90,000?}
+\item{who_member}{Logical, is country a WHO member state?}
+\item{who_member_small}{Logical, is country a WHO member state with population <= 90,000?}
+\item{oecd_member}{Logical, is country an OECD member state?}
+\item{gbd_high_income}{Logical, is the country classified as high-income in the IHME's GBD 2019?}
 \item{who_short_name_en}{WHO country name, short, English.}
 \item{who_formal_name_en}{WHO country name, formal, English. Only available for official member states.}
 \item{who_short_name_ar}{WHO country name, short, Arabic.}
@@ -42,6 +44,18 @@ A data frame with 248 rows and 68 variables:
 \item{who_region}{WHO region code.}
 \item{un_region}{UN region code.}
 \item{un_subregion}{UN sub-region code.}
+\item{un_region_name_en}{UN region name, English.}
+\item{un_subregion_name_en}{UN subregion name, English.}
+\item{un_region_name_ru}{UN region name, Russian}
+\item{un_subregion_name_ru}{UN subregion name, Russian}
+\item{un_region_name_fr}{UN region name, French}
+\item{un_subregion_name_fr}{UN subregion name, French}
+\item{un_region_name_es}{UN region name, Spanish.}
+\item{un_subregion_name_es}{UN subregion name, Spanish.}
+\item{un_region_name_ar}{UN region name, Arabic.}
+\item{un_subregion_name_ar}{UN subregion name, Arabic.}
+\item{un_region_name_zh}{UN region name, Chinese.}
+\item{un_subregion_name_zh}{UN subregion name, Chinese.}
 \item{wb_ig_1987}{World Bank Income Group code, 1987 (FY 1989) classification.}
 \item{wb_ig_1988}{World Bank Income Group code, 1988 (FY 1990) classification.}
 \item{wb_ig_1989}{World Bank Income Group code, 1989 (FY 1991) classification.}
@@ -83,6 +97,10 @@ A data frame with 248 rows and 68 variables:
 \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Statistics Division, Country or Area Codes for Statistical Use tables; accessed August 15 2020.}
 
 \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, accessed August 15 2020.}
+
+\href{https://www.oecd.org/about/members-and-partners/}{Organisation for Economic Co-operation and Development membership list, accessed 1 February 2021.}
+
+\href{http://ghdx.healthdata.org/gbd-2019}{Institute for Health Metrics and Evaluation Global Burden of Disease 2019 Socio-Demographic Index data, accessed 1 February 2021.}
 }
 \usage{
 countries

@@ -6,7 +6,7 @@
 \usage{
 names_to_iso3(
   names,
-  language = "en",
+  language = c("en", "es", "ru", "ar", "zh", "fr"),
   ignore_case = T,
   fuzzy_matching = "yes",
   method = "jw",

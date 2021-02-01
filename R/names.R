@@ -31,13 +31,13 @@
 #' @export
 names_to_code <- function(names,
                           type = "iso3",
-                          language = "en",
+                          language = c("en", "es", "ru", "ar", "zh", "fr"),
                           ignore_case = T,
                           fuzzy_matching = "yes",
                           method = "jw",
                           p = 0.1) {
   rlang::arg_match(type, country_code_types())
-  rlang::arg_match(language, c("en", "es", "ru", "ar", "zh", "fr"))
+  language <- rlang::arg_match(language)
   assert_logical(ignore_case)
   assert_fuzzy_matching(fuzzy_matching)
   rlang::arg_match(method, c("osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"))
@@ -72,7 +72,7 @@ names_to_code <- function(names,
 #'
 #' @export
 names_to_iso3 <- function(names,
-                          language = "en",
+                          language = c("en", "es", "ru", "ar", "zh", "fr"),
                           ignore_case = T,
                           fuzzy_matching = "yes",
                           method = "jw",
@@ -86,7 +86,6 @@ names_to_iso3 <- function(names,
                 p = p)
 }
 
-#'
 #' @noRd
 name_matching <- function(name,
                           df,

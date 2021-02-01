@@ -1,3 +1,11 @@
+# whoville 0.1.3
+
+* UN region and subregion names added in for every language, which can be accessed
+    using `iso3_to_regions()`.
+* OECD membership added, usable through `is_oecd_member()` and `oecd_member_states().
+* GBD 2019 high-income countries, usable through `is_gbd_high_income()` and
+    `gbd_high_income_states()`.
+
 # whotilities 0.1.2
 
 * Country data updated to use WHO xMart4 REF_MART data. This has created changes across all functions and in the package.

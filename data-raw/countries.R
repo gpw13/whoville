@@ -22,7 +22,7 @@ xmart_c <- xmart4_table("REFMART", "REF_COUNTRY") %>%
             who_formal_name_ru = NAME_FORMAL_RU,
             who_short_name_zh = NAME_SHORT_ZH,
             who_formal_name_zh = NAME_FORMAL_ZH,
-            who_member_state = WHO_LEGAL_STATUS %in% "M",
+            who_member = WHO_LEGAL_STATUS %in% "M",
             sovereign_iso3 = SOVEREIGN_ISO_3,
             who_region = GRP_WHO_REGION)
 
@@ -53,7 +53,9 @@ un_c <- read_excel("data-raw/un_countries.xlsx",
          m49 = `M49 Code`,
          un_name_en = `Country or Area`,
          un_region = `Region Code`,
-         un_subregion = `Sub-region Code`)
+         un_region_name_en = `Region Name`,
+         un_subregion = `Sub-region Code`,
+         un_subregion_name_en = `Sub-region Name`)
 
 # Pulling in names in different languages
 
@@ -65,7 +67,9 @@ for (i in 1:5) {
                    ln_names[i],
                    col_types = "text") %>%
     select(m49 = `M49 Code`,
-           !!sym(paste0("un_name_", ln_codes[i])) := `Country or Area`)
+           !!sym(paste0("un_name_", ln_codes[i])) := `Country or Area`,
+           !!sym(paste0("un_region_name_", ln_codes[i])) := `Region Name`,
+           !!sym(paste0("un_subregion_name_", ln_codes[i])) := `Sub-region Name`)
   un_c <- left_join(un_c, df, by = "m49")
 }
 
@@ -89,12 +93,30 @@ countries <- left_join(xmart_c, un_c, by = "iso3") %>%
          iso2:who_code,
          m49,
          sovereign_iso3,
-         who_member_state,
+         who_member,
          who_short_name_en:who_formal_name_zh,
          un_name_en,
-         un_name_ru:former_name_2_en,
+         un_name_ru,
+         un_name_fr,
+         un_name_es,
+         un_name_ar,
+         un_name_zh,
+         alt_name_en:former_name_2_en,
          who_region,
-         un_region:un_subregion,
+         un_region,
+         un_subregion,
+         un_region_name_en,
+         un_subregion_name_en,
+         un_region_name_ru,
+         un_subregion_name_ru,
+         un_region_name_fr,
+         un_subregion_name_fr,
+         un_region_name_es,
+         un_subregion_name_es,
+         un_region_name_ar,
+         un_subregion_name_ar,
+         un_region_name_zh,
+         un_subregion_name_zh,
          wb_ig_1987:wb_ig_2019)
 
 # Getting small member states information
@@ -105,10 +127,35 @@ small_countries <- wpp_population %>%
          total < 90000) %>%
   pull(iso3)
 
-who_small_member_state <- countries$iso3 %in% small_countries
+who_member_small <- countries$iso3 %in% small_countries
 
 countries <- countries %>%
-  add_column(who_small_member_state,
-             .after = "who_member_state")
+  add_column(who_member_small,
+             .after = "who_member")
+
+# Adding in OECD data
+# From World Bank link with ISO3 codes of all member states
+
+oecd <- readxl::read_excel("data-raw/oecd.xlsx")
+oecd_member <- countries$iso3 %in% oecd$ISO3
+
+countries <- countries %>%
+  add_column(oecd_member,
+             .after = "who_member_small")
+
+# Adding in high-income GBD countries
+# File edited to just have the high-income countries
+
+gbd <- readxl::read_excel("data-raw/gbd_sdi.xlsx",
+                          skip = 1) %>%
+  transmute(iso3 = whoville::names_to_iso3(Location))
+
+gbd_high_income <- countries$iso3 %in% gbd$iso3
+
+countries <- countries %>%
+  add_column(gbd_high_income,
+             .after = "oecd_member")
+
+# Writing out result
 
 usethis::use_data(countries, overwrite = TRUE)

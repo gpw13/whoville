@@ -1,4 +1,4 @@
-#' Get membership status from ISO3 codes.
+#' Get WHO membership status from ISO3 codes.
 #'
 #' `is_who_member()` takes in a vector of ISO3 codes and returns a logical vector
 #' on whether that country is a WHO member state or not.
@@ -9,14 +9,15 @@
 #'
 #' @export
 is_who_member <- function(iso3) {
-  members <- whoville::countries[["who_member_state"]]
+  members <- whoville::countries[["who_member"]]
   idx <- match(iso3, whoville::countries[["iso3"]])
   members[idx] %in% TRUE
 }
 
-#' Get small state membership status from ISO3 codes.
+
+#' Get WHO small state membership status from ISO3 codes.
 #'
-#' `is_small_member_state()` takes in a vector of ISO3 codes and returns a logical vector
+#' `is_who_member_small()` takes in a vector of ISO3 codes and returns a logical vector
 #' on whether that country is a small WHO member state or not. In this instance,
 #' small member states are defined as member states with a total population <=
 #' 90,000 in mid-year 2018, according to the World Population Prospects.
@@ -26,15 +27,15 @@ is_who_member <- function(iso3) {
 #' @return Logical vector.
 #'
 #' @export
-is_small_who_member <- function(iso3) {
-  members <- whoville::countries[["who_small_member_state"]]
+is_who_member_small <- function(iso3) {
+  members <- whoville::countries[["who_member_small"]]
   idx <- match(iso3, whoville::countries[["iso3"]])
   members[idx] %in% TRUE
 }
 
 #' Get large state membership status from ISO3 codes.
 #'
-#' `is_large_member_state()` takes in a vector of ISO3 codes and returns a logical vector
+#' `is_who_member_large()` takes in a vector of ISO3 codes and returns a logical vector
 #' on whether that country is a large WHO member state or not. In this instance,
 #' large member states are defined as member states with a total population >
 #' 90,000 in mid-year 2018, according to the World Population Prospects.
@@ -44,8 +45,8 @@ is_small_who_member <- function(iso3) {
 #' @return Logical vector.
 #'
 #' @export
-is_large_who_member <- function(iso3) {
-  is_who_member(iso3) & !is_small_who_member(iso3)
+is_who_member_large <- function(iso3) {
+  is_who_member(iso3) & !is_who_member_small(iso3)
 }
 
 #' Get ISO3 codes for WHO member states.
@@ -67,11 +68,72 @@ who_member_states <- function(include = c("all", "small", "large")) {
   include <- rlang::arg_match(include)
   x <- whoville::countries[["iso3"]]
   if (include == "small") {
-    x <- x[is_small_who_member(x)]
+    x <- x[is_who_member_small(x)]
   } else if (include == "large") {
-    x <- x[is_large_who_member(x)]
+    x <- x[is_who_member_large(x)]
   } else {
     x <- x[is_who_member(x)]
   }
   x
+}
+
+#' Get OECD membership status from ISO3 codes.
+#'
+#' `is_oecd_member()` takes in a vector of ISO3 codes and returns a logical vector
+#' on whether that country is an OECD member state or not.
+#'
+#' @inheritParams is_who_member
+#'
+#' @return Logical vector.
+#'
+#' @export
+is_oecd_member <- function(iso3) {
+  members <- whoville::countries[["oecd_member"]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
+  members[idx] %in% TRUE
+}
+
+#' Get ISO3 codes for OECD member states.
+#'
+#' `oecd_member_states()` returns ISO3 codes for OECD member states. Useful to
+#' expand data frames to explicitly include missing data for countries.
+#'
+#' @inherit who_member_states return
+#'
+#' @export
+oecd_member_states <- function() {
+  x <- whoville::countries[["iso3"]]
+  x[is_oecd_member(x)]
+}
+
+#' Check GBD high-income classification status from ISO3 codes.
+#'
+#' `is_gbd_high_income()` takes in a vector of ISO3 codes and returns a logical vector
+#' on whether that country is classified as high-income in the 2019 Global Burden
+#' of Disease released by the Institute for Health Metrics and Evaluation.
+#'
+#' @inheritParams is_who_member
+#'
+#' @return Logical vector.
+#'
+#' @export
+is_gbd_high_income <- function(iso3) {
+  members <- whoville::countries[["gbd_high_income"]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
+  members[idx] %in% TRUE
+}
+
+#' Get ISO3 codes for GBD high-income states.
+#'
+#' `gbd_high_income_states()` returns ISO3 codes for states classified as high
+#' income in the 2019 Global Burden of Disease released by the Institute for
+#' Health Metrics and Evaluation. Useful to expand data frames to explicitly
+#' include missing data for countries.
+#'
+#' @inherit who_member_states return
+#'
+#' @export
+gbd_high_income_states <- function() {
+  x <- whoville::countries[["iso3"]]
+  x[is_gbd_high_income(x)]
 }

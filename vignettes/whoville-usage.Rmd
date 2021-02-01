@@ -1,0 +1,46 @@
+---
+title: "Usage"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+If we have an unclean data frame with country names, we can use `names_to_codes()`
+to match these to ISO3 codes. The function matches the names vector across all possible
+names found in the `countries` data frame. ISO3 codes for exact matches are always returned,
+but the user has specific options for non-exact matches. They can be fuzzy matched (the default),
+always made NA, or require user input to confirm fuzzy matching results. Fuzzy matches
+always return a message to the user on the confirmed match. More details available through
+`?names_to_codes`.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r names_to_code}
+library(whoville)
+
+names_to_code(c("Venezuela", "Arentina", "afghanist"))
+```
+
+Since these functions are vectorized, we can easily use them in a normal workflow, especially
+if we're using the `tidyverse`. Below, we can clean up our tidy names and get
+the correct UN region and income group for our countries, as well as its name
+in Chinese:
+
+```{r last_example, message=F}
+library(dplyr)
+df <- data.frame(c_names = c("Venezuela", "Arentina", "afghanist"))
+
+df %>%
+  mutate(iso3 = names_to_code(c_names),
+         un_region = iso3_to_regions(iso3, region = "un_region"),
+         wb_ig = iso3_to_regions(iso3, region = "wb_ig"),
+         name_zh = iso3_to_names(iso3, org = "un", language = "zh"))
+```
+
