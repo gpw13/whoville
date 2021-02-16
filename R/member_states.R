@@ -137,3 +137,34 @@ gbd_high_income_states <- function() {
   x <- whoville::countries[["iso3"]]
   x[is_gbd_high_income(x)]
 }
+
+#' Get ISO3 codes for least-developed countries.
+#'
+#' `un_ldcs()` returns ISO3 codes for countries classified as least
+#' developed by the United Nations. Useful to expand data frames to explicitly
+#' include missing data for countries.
+#'
+#' @inherit who_member_states return
+#'
+#' @export
+un_ldcs <- function() {
+  x <- whoville::countries[["iso3"]]
+  x[is_un_ldc(x)]
+}
+
+#' Check least-developed country classification status from ISO3 codes.
+#'
+#' `is_un_ldc()` takes in a vector of ISO3 codes and returns a logical vector
+#' on whether that country is classified as a least-developed country by the
+#' United Nations.
+#'
+#' @inheritParams is_who_member
+#'
+#' @return Logical vector.
+#'
+#' @export
+is_un_ldc <- function(iso3) {
+  members <- whoville::countries[["un_ldc"]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
+  members[idx] %in% TRUE
+}

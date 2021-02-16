@@ -16,6 +16,7 @@
 #'   \item{who_member_small}{Logical, is country a WHO member state with population <= 90,000?}
 #'   \item{oecd_member}{Logical, is country an OECD member state?}
 #'   \item{gbd_high_income}{Logical, is the country classified as high-income in the IHME's GBD 2019?}
+#'   \item{un_ldc}{Logical, is the country classified as a least-developed country by the United Nations?}
 #'   \item{who_short_name_en}{WHO country name, short, English.}
 #'   \item{who_formal_name_en}{WHO country name, formal, English. Only available for official member states.}
 #'   \item{who_short_name_ar}{WHO country name, short, Arabic.}
@@ -94,5 +95,6 @@
 #' @source \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, accessed August 15 2020.}
 #' @source \href{https://www.oecd.org/about/members-and-partners/}{Organisation for Economic Co-operation and Development membership list, accessed 1 February 2021.}
 #' @source \href{http://ghdx.healthdata.org/gbd-2019}{Institute for Health Metrics and Evaluation Global Burden of Disease 2019 Socio-Demographic Index data, accessed 1 February 2021.}
+#' @source \href{https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf}{United Nations Committee for Development Policy, list of least developed countries, accessed 16 February 2021.}
 "countries"
 

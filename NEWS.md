@@ -3,8 +3,10 @@
 * UN region and subregion names added in for every language, which can be accessed
     using `iso3_to_regions()`.
 * OECD membership added, usable through `is_oecd_member()` and `oecd_member_states().
-* GBD 2019 high-income countries, usable through `is_gbd_high_income()` and
+* GBD 2019 high-income countries added, usable through `is_gbd_high_income()` and
     `gbd_high_income_states()`.
+* UN least-developed country status added, usable through `is_un_ldc()` and 
+    `un_ldcs()`.
 
 # whotilities 0.1.2
 

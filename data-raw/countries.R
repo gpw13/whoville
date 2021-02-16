@@ -2,6 +2,7 @@ library(tidyverse)
 library(readxl)
 library(wppdistro)
 library(xmart4)
+library(pdftools)
 
 # Adding in WHO data
 
@@ -155,6 +156,19 @@ gbd_high_income <- countries$iso3 %in% gbd$iso3
 countries <- countries %>%
   add_column(gbd_high_income,
              .after = "oecd_member")
+
+# Adding in least-developed countries
+ldc_doc <- pdf_text("https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf")
+ldc_string <- stringr::str_squish(ldc_doc)
+ldc_string <- stringr::str_match(ldc_string, "Country inclusion Country inclusion (.*?) \\* The list")[2]
+ldc_string <- stringr::str_split(ldc_string, " [0-9]{4} ")[[1]]
+ldc_iso3 <- whoville::names_to_iso3(ldc_string, fuzzy_matching = "user_input")
+
+un_ldc <- countries$iso3 %in% ldc_iso3
+
+countries <- countries %>%
+  add_column(un_ldc,
+             .after = "gbd_high_income")
 
 # Writing out result
 
