@@ -17,6 +17,8 @@
 #'   \item{oecd_member}{Logical, is country an OECD member state?}
 #'   \item{gbd_high_income}{Logical, is the country classified as high-income in the IHME's GBD 2019?}
 #'   \item{un_ldc}{Logical, is the country classified as a least-developed country by the United Nations?}
+#'   \item{un_lldc}{Logical, is the country classified as a land-locked developing country by the United Nations?}
+#'   \item{un_sids}{Logical, is the country classified as a small island developing state by the United Nations?}
 #'   \item{who_short_name_en}{WHO country name, short, English.}
 #'   \item{who_formal_name_en}{WHO country name, formal, English. Only available for official member states.}
 #'   \item{who_short_name_ar}{WHO country name, short, Arabic.}

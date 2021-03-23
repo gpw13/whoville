@@ -50,13 +50,16 @@ wb_ig <- readxl::read_xls(temp,
 un_c <- read_excel("data-raw/un_countries.xlsx",
                    "english",
                    col_types = "text") %>%
-  select(iso3 = `ISO-alpha3 Code`,
-         m49 = `M49 Code`,
-         un_name_en = `Country or Area`,
-         un_region = `Region Code`,
-         un_region_name_en = `Region Name`,
-         un_subregion = `Sub-region Code`,
-         un_subregion_name_en = `Sub-region Name`)
+  transmute(iso3 = `ISO-alpha3 Code`,
+            m49 = `M49 Code`,
+            un_ldc = !is.na(`Least Developed Countries (LDC)`),
+            un_lldc = !is.na(`Land Locked Developing Countries (LLDC)`),
+            un_sids = !is.na(`Small Island Developing States (SIDS)`),
+            un_name_en = `Country or Area`,
+            un_region = `Region Code`,
+            un_region_name_en = `Region Name`,
+            un_subregion = `Sub-region Code`,
+            un_subregion_name_en = `Sub-region Name`)
 
 # Pulling in names in different languages
 
@@ -95,6 +98,9 @@ countries <- left_join(xmart_c, un_c, by = "iso3") %>%
          m49,
          sovereign_iso3,
          who_member,
+         un_ldc,
+         un_lldc,
+         un_sids,
          who_short_name_en:who_formal_name_zh,
          un_name_en,
          un_name_ru,
@@ -156,19 +162,6 @@ gbd_high_income <- countries$iso3 %in% gbd$iso3
 countries <- countries %>%
   add_column(gbd_high_income,
              .after = "oecd_member")
-
-# Adding in least-developed countries
-ldc_doc <- pdf_text("https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf")
-ldc_string <- stringr::str_squish(ldc_doc)
-ldc_string <- stringr::str_match(ldc_string, "Country inclusion Country inclusion (.*?) \\* The list")[2]
-ldc_string <- stringr::str_split(ldc_string, " [0-9]{4} ")[[1]]
-ldc_iso3 <- whoville::names_to_iso3(ldc_string, fuzzy_matching = "user_input")
-
-un_ldc <- countries$iso3 %in% ldc_iso3
-
-countries <- countries %>%
-  add_column(un_ldc,
-             .after = "gbd_high_income")
 
 # Writing out result
 

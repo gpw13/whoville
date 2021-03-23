@@ -1,3 +1,9 @@
+# whoville 0.1.4
+
+* Small island developing states (SIDS) and land-locked developing countries (LLDC)
+    classifications added to `countries`.
+* Additional alt names from official ISO3 short names added.
+
 # whoville 0.1.3
 
 * UN region and subregion names added in for every language, which can be accessed
