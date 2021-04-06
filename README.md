@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# whoville
+# whoville <a href='https://github.com/caldwellst/whoville'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
@@ -14,7 +14,9 @@ published by the World Health Organization, United Nations and World
 Bank easily accessible in R. At the moment, this is a reference dataset
 and set of functions to work with country codes and names, allowing easy
 conversion between names and codes as well as easy access to region
-codes, WHO member status, and other published country metadata.
+codes, WHO member status, and other published country metadata. This is
+used to assist the work of the WHO’s Division of Data, Analytics, and
+Delivery for Impact’s Global Programme of Work 13.
 
 ## Functions
 
