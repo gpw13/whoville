@@ -41,6 +41,7 @@
 #'   \item{alt_name_2_en}{Another alternative (non-official) country name, English.}
 #'   \item{alt_name_3_en}{Another alternative (non-official) country name, English.}
 #'   \item{alt_name_4_en}{Another alternative (non-official) country name, English.}
+#'   \item{alt_name_5_en}{Another alternative (non-official) country name, English.}
 #'   \item{former_name_en}{Former country (non-official) name, English.}
 #'   \item{former_name_2_en}{Another former (non-official) country name, English.}
 #'   \item{who_region}{WHO region code.}
