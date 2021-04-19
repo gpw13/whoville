@@ -168,3 +168,66 @@ is_un_ldc <- function(iso3) {
   idx <- match(iso3, whoville::countries[["iso3"]])
   members[idx] %in% TRUE
 }
+
+#' Get ISO3 codes for land-locked developing countries.
+#'
+#' `un_lldcs()` returns ISO3 codes for countries classified as land-locked
+#' developing countries by the United Nations. Useful to expand data frames to explicitly
+#' include missing data for countries.
+#'
+#' @inherit who_member_states return
+#'
+#' @export
+un_lldcs <- function() {
+  x <- whoville::countries[["iso3"]]
+  x[is_un_lldc(x)]
+}
+
+#' Check land-locked developing country classification status from ISO3 codes.
+#'
+#' `is_un_lldc()` takes in a vector of ISO3 codes and returns a logical vector
+#' on whether that country is classified as a land-locked developing country by the
+#' United Nations.
+#'
+#' @inheritParams is_who_member
+#'
+#' @return Logical vector.
+#'
+#' @export
+is_un_lldc <- function(iso3) {
+  members <- whoville::countries[["un_lldc"]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
+  members[idx] %in% TRUE
+}
+
+#' Get ISO3 codes for small island developing states.
+#'
+#' `un_sids()` returns ISO3 codes for countries classified as small island
+#' developing states by the United Nations. Useful to expand data frames to explicitly
+#' include missing data for countries.
+#'
+#' @inherit who_member_states return
+#'
+#' @export
+un_sids <- function() {
+  x <- whoville::countries[["iso3"]]
+  x[is_un_sid(x)]
+}
+
+#' Check small island developing state status from ISO3 codes.
+#'
+#' `is_un_sid()` takes in a vector of ISO3 codes and returns a logical vector
+#' on whether that country is classified as a small island developing state by the
+#' United Nations.
+#'
+#' @inheritParams is_who_member
+#'
+#' @return Logical vector.
+#'
+#' @export
+is_un_sid <- function(iso3) {
+  members <- whoville::countries[["un_sids"]]
+  idx <- match(iso3, whoville::countries[["iso3"]])
+  members[idx] %in% TRUE
+}
+
