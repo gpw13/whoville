@@ -5,7 +5,7 @@
 \alias{countries}
 \title{Country metadata from the WHO, UN, and WB.}
 \format{
-A data frame with 249 rows and 85 variables:
+A data frame with 249 rows and 86 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code.}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code.}}
@@ -42,6 +42,7 @@ A data frame with 249 rows and 85 variables:
 \item{alt_name_2_en}{Another alternative (non-official) country name, English.}
 \item{alt_name_3_en}{Another alternative (non-official) country name, English.}
 \item{alt_name_4_en}{Another alternative (non-official) country name, English.}
+\item{alt_name_5_en}{Another alternative (non-official) country name, English.}
 \item{former_name_en}{Former country (non-official) name, English.}
 \item{former_name_2_en}{Another former (non-official) country name, English.}
 \item{who_region}{WHO region code.}
