@@ -1,6 +1,6 @@
 #' @noRd
 name_cols <- function() {
-  names(dplyr::select(whoville::countries, dplyr::contains("name")))
+  names(dplyr::select(whoville::countries, dplyr::contains("name") & !dplyr::contains("region")))
 }
 
 #' Country code types available
