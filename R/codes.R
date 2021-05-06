@@ -1,15 +1,16 @@
 #' Get regions from ISO3 country codes.
 #'
-#' `iso3_to_regions()` takes in a vector of ISO3 codes and returns regions
-#' specified by the user. Currently, this can be codes or English names for
-#' UN regions/subregions, WHO regions, and World Bank Income Groups.
+#' `iso3_to_regions()` takes in a vector of ISO3 codes and returns a vector of
+#' specified regions. Currently, this can be codes or English names for
+#' UN regions/subregions, WHO regions, and World Bank geographical regions and
+#' Income Groups.
 #'
 #' @param iso3 Character vector of ISO3 codes.
-#' @param region Type of region to return. Can be
-#' any of "who_region" (default), "un_region", "un_subregion", or "wb_ig".
+#' @param region Type of region to return. Can be any of "who_region" (default),
+#'     "un_region", "un_subregion", "wb_region", or "wb_ig".
 #' @param year For World Bank Income Group only, specify the year to return.
-#' @param name For UN region and subregion only. If `TRUE`, return official UN
-#'     name instead of M49 code.
+#' @param name For UN region and subregion and WB region only. If `TRUE`,
+#'     return official UN name instead of M49 code.
 #' @param language For UN region and subregion only, if returning name.
 #'     A character value specifying the language of the country names.
 #'     Should be specified using the ISO2 language code.
@@ -18,7 +19,7 @@
 #'
 #' @export
 iso3_to_regions <- function(iso3,
-                            region = c("who_region", "un_region", "un_subregion", "wb_ig"),
+                            region = c("who_region", "un_region", "un_subregion", "wb_region", "wb_ig"),
                             year = max(wb_ig_years()),
                             name = FALSE,
                             language = c("en", "es", "ru", "ar", "zh", "fr")) {
