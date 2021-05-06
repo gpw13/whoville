@@ -45,6 +45,20 @@ wb_ig <- readxl::read_xls(temp,
                    ),
                    .names = "wb_ig_{.col}"))
 
+# WB region data
+
+temp = tempfile(fileext = ".xls")
+url = "http://databank.worldbank.org/data/download/site-content/CLASS.xls"
+download.file(url, temp, mode = "wb")
+
+wb_reg <- readxl::read_xls(temp,
+                           sheet = "List of economies",
+                           skip = 6,
+                           col_types = c(rep("skip", 3), "text", "skip", "text", rep("skip", 3)),
+                           col_names = c("iso3", "wb_region"),
+                           na = "..") %>%
+  mutate(wb_region_name_en = wb_region)
+
 # Adding UN data
 
 un_c <- read_excel("data-raw/un_countries.xlsx",
@@ -94,6 +108,7 @@ alt_c <- read_excel("data-raw/alt_countries.xlsx") %>%
 countries <- left_join(xmart_c, un_c, by = "iso3") %>%
   left_join(alt_c, by = "iso3") %>%
   left_join(wb_ig, by = "iso3") %>%
+  left_join(wb_reg, by = "iso3") %>%
   select(iso3,
          iso2:who_code,
          m49,
@@ -125,6 +140,8 @@ countries <- left_join(xmart_c, un_c, by = "iso3") %>%
          un_subregion_name_ar,
          un_region_name_zh,
          un_subregion_name_zh,
+         wb_region,
+         wb_region_name_en,
          wb_ig_1987:wb_ig_2019)
 
 # Getting small member states information

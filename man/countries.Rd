@@ -5,7 +5,7 @@
 \alias{countries}
 \title{Country metadata from the WHO, UN, and WB.}
 \format{
-A data frame with 249 rows and 86 variables:
+A data frame with 249 rows and 88 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code.}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code.}}
@@ -60,6 +60,8 @@ A data frame with 249 rows and 86 variables:
 \item{un_subregion_name_ar}{UN subregion name, Arabic.}
 \item{un_region_name_zh}{UN region name, Chinese.}
 \item{un_subregion_name_zh}{UN subregion name, Chinese.}
+\item{wb_region}{WB geographical region. English name as no code provided by WB.}
+\item{wb_region_name_en}{WB geographical region name, English.}
 \item{wb_ig_1987}{World Bank Income Group code, 1987 (FY 1989) classification.}
 \item{wb_ig_1988}{World Bank Income Group code, 1988 (FY 1990) classification.}
 \item{wb_ig_1989}{World Bank Income Group code, 1989 (FY 1991) classification.}
@@ -100,7 +102,7 @@ A data frame with 249 rows and 86 variables:
 
 \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Statistics Division, Country or Area Codes for Statistical Use tables; accessed August 15 2020.}
 
-\href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, accessed August 15 2020.}
+\href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, and regions, accessed August 15 2020.}
 
 \href{https://www.oecd.org/about/members-and-partners/}{Organisation for Economic Co-operation and Development membership list, accessed 1 February 2021.}
 

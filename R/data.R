@@ -59,6 +59,8 @@
 #'   \item{un_subregion_name_ar}{UN subregion name, Arabic.}
 #'   \item{un_region_name_zh}{UN region name, Chinese.}
 #'   \item{un_subregion_name_zh}{UN subregion name, Chinese.}
+#'   \item{wb_region}{WB geographical region. English name as no code provided by WB.}
+#'   \item{wb_region_name_en}{WB geographical region name, English.}
 #'   \item{wb_ig_1987}{World Bank Income Group code, 1987 (FY 1989) classification.}
 #'   \item{wb_ig_1988}{World Bank Income Group code, 1988 (FY 1990) classification.}
 #'   \item{wb_ig_1989}{World Bank Income Group code, 1989 (FY 1991) classification.}
@@ -95,7 +97,7 @@
 #' }
 #' @source \href{https://portal-uat.who.int/xmart4/REFMART}{World Health Organization country reference table, accessed September 23 2020.}
 #' @source \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Statistics Division, Country or Area Codes for Statistical Use tables; accessed August 15 2020.}
-#' @source \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, accessed August 15 2020.}
+#' @source \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, and regions, accessed August 15 2020.}
 #' @source \href{https://www.oecd.org/about/members-and-partners/}{Organisation for Economic Co-operation and Development membership list, accessed 1 February 2021.}
 #' @source \href{http://ghdx.healthdata.org/gbd-2019}{Institute for Health Metrics and Evaluation Global Burden of Disease 2019 Socio-Demographic Index data, accessed 1 February 2021.}
 #' @source \href{https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf}{United Nations Committee for Development Policy, list of least developed countries, accessed 16 February 2021.}
