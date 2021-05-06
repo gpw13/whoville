@@ -6,7 +6,7 @@
 \usage{
 iso3_to_regions(
   iso3,
-  region = c("who_region", "un_region", "un_subregion", "wb_ig"),
+  region = c("who_region", "un_region", "un_subregion", "wb_region", "wb_ig"),
   year = max(wb_ig_years()),
   name = FALSE,
   language = c("en", "es", "ru", "ar", "zh", "fr")
@@ -15,13 +15,13 @@ iso3_to_regions(
 \arguments{
 \item{iso3}{Character vector of ISO3 codes.}
 
-\item{region}{Type of region to return. Can be
-any of "who_region" (default), "un_region", "un_subregion", or "wb_ig".}
+\item{region}{Type of region to return. Can be any of "who_region" (default),
+"un_region", "un_subregion", "wb_region", or "wb_ig".}
 
 \item{year}{For World Bank Income Group only, specify the year to return.}
 
-\item{name}{For UN region and subregion only. If \code{TRUE}, return official UN
-name instead of M49 code.}
+\item{name}{For UN region and subregion and WB region only. If \code{TRUE},
+return official UN name instead of M49 code.}
 
 \item{language}{For UN region and subregion only, if returning name.
 A character value specifying the language of the country names.
@@ -31,7 +31,8 @@ Should be specified using the ISO2 language code.}
 Character vector.
 }
 \description{
-\code{iso3_to_regions()} takes in a vector of ISO3 codes and returns regions
-specified by the user. Currently, this can be codes or English names for
-UN regions/subregions, WHO regions, and World Bank Income Groups.
+\code{iso3_to_regions()} takes in a vector of ISO3 codes and returns a vector of
+specified regions. Currently, this can be codes or English names for
+UN regions/subregions, WHO regions, and World Bank geographical regions and
+Income Groups.
 }
