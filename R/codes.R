@@ -2,7 +2,8 @@
 #'
 #' `iso3_to_regions()` takes in a vector of ISO3 codes and returns a vector of
 #' specified regions. Currently, this can be codes or English names for
-#' UN regions/subregions, WHO regions, and World Bank geographical regions and
+#' UN regions/subregions/intermediate regions, UN DESA regions/subregions,
+#' SDG regions/subregions, WHO regions, and World Bank geographical regions and
 #' Income Groups.
 #'
 #' @param iso3 Character vector of ISO3 codes.
@@ -19,7 +20,7 @@
 #'
 #' @export
 iso3_to_regions <- function(iso3,
-                            region = c("who_region", "un_region", "un_subregion", "wb_region", "wb_ig"),
+                            region = c("who_region", "un_region", "un_subregion", "un_intermediate_region", "sdg_region", "sdg_subregion", "un_desa_region", "un_desa_subregion", "wb_region", "wb_ig"),
                             year = max(wb_ig_years()),
                             name = FALSE,
                             language = c("en", "es", "ru", "ar", "zh", "fr")) {
@@ -28,7 +29,7 @@ iso3_to_regions <- function(iso3,
   if (region == "wb_ig") {
     assert_wb_ig_years(year)
     mtch <- paste(region, year, sep = "_")
-  } else if (region %in% c("un_region", "un_subregion") && name) {
+  } else if (region %in% c("un_region", "un_subregion", "un_intermediate_region", "sdg_region", "sdg_subregion", "un_desa_region", "un_desa_subregion") && name) {
     language <- rlang::arg_match(language)
     mtch <- paste(region, "name", language, sep = "_")
   } else {

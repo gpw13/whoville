@@ -1,3 +1,8 @@
+# whoville 0.1.5
+
+* Added UN intermediate regions, UN DESA regions and subregions, and SDG regions
+and subregions.
+
 # whoville 0.1.4
 
 * Small island developing states (SIDS) and land-locked developing countries (LLDC)

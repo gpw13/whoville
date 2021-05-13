@@ -5,7 +5,7 @@
 \alias{countries}
 \title{Country metadata from the WHO, UN, and WB.}
 \format{
-A data frame with 249 rows and 88 variables:
+A data frame with 249 rows and 103 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code.}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code.}}
@@ -48,18 +48,33 @@ A data frame with 249 rows and 88 variables:
 \item{who_region}{WHO region code.}
 \item{un_region}{UN region code.}
 \item{un_subregion}{UN sub-region code.}
+\item{un_intermediate_region}{UN intermediate region code.}
 \item{un_region_name_en}{UN region name, English.}
 \item{un_subregion_name_en}{UN subregion name, English.}
-\item{un_region_name_ru}{UN region name, Russian}
-\item{un_subregion_name_ru}{UN subregion name, Russian}
-\item{un_region_name_fr}{UN region name, French}
-\item{un_subregion_name_fr}{UN subregion name, French}
+\item{un_intermediate_region_name_en}{UN intermediate region name, English.}
+\item{un_region_name_ru}{UN region name, Russian.}
+\item{un_subregion_name_ru}{UN subregion name, Russian.}
+\item{un_intermediate_region_name_ru}{UN intermediate region name, Russian.}
+\item{un_region_name_fr}{UN region name, French.}
+\item{un_subregion_name_fr}{UN subregion name, French.}
+\item{un_intermediate_region_name_fr}{UN intermediate region name, French.}
 \item{un_region_name_es}{UN region name, Spanish.}
 \item{un_subregion_name_es}{UN subregion name, Spanish.}
+\item{un_intermediate_region_name_es}{UN intermediate region name, Spanish.}
 \item{un_region_name_ar}{UN region name, Arabic.}
 \item{un_subregion_name_ar}{UN subregion name, Arabic.}
+\item{un_intermediate_region_name_ar}{UN intermediate region name, Arabic.}
 \item{un_region_name_zh}{UN region name, Chinese.}
 \item{un_subregion_name_zh}{UN subregion name, Chinese.}
+\item{un_intermediate_region_name_zh}{UN intermediate region name, Chinese.}
+\item{un_desa_region}{UN DESA region code.}
+\item{un_desa_region_name_en}{UN DESA region name, English.}
+\item{un_desa_subregion}{UN DESA subregion code.}
+\item{un_desa_subregion_name_en}{UN DESA subregion name, English.}
+\item{sdg_region}{SDG region code.}
+\item{sdg_region_name_en}{SDG region name, English.}
+\item{sdg_subregion}{SDG subregion code.}
+\item{sdg_subregion_name_en}{SDG subregion name, English.}
 \item{wb_region}{WB geographical region. English name as no code provided by WB.}
 \item{wb_region_name_en}{WB geographical region name, English.}
 \item{wb_ig_1987}{World Bank Income Group code, 1987 (FY 1989) classification.}
@@ -109,6 +124,8 @@ A data frame with 249 rows and 88 variables:
 \href{http://ghdx.healthdata.org/gbd-2019}{Institute for Health Metrics and Evaluation Global Burden of Disease 2019 Socio-Demographic Index data, accessed 1 February 2021.}
 
 \href{https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf}{United Nations Committee for Development Policy, list of least developed countries, accessed 16 February 2021.}
+
+\href{https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/aggregates_correspondence_table_2020_1.xlsx}{United Nations Department of Economic and Social Affairs, Population Division (2020). International Migrant Stock 2020.}
 }
 \usage{
 countries

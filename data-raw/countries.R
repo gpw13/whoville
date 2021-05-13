@@ -73,7 +73,15 @@ un_c <- read_excel("data-raw/un_countries.xlsx",
             un_region = `Region Code`,
             un_region_name_en = `Region Name`,
             un_subregion = `Sub-region Code`,
-            un_subregion_name_en = `Sub-region Name`)
+            un_subregion_name_en = `Sub-region Name`,
+            un_intermediate_region = `Intermediate Region Code`,
+            un_intermediate_region_name_en = `Intermediate Region Name`) %>%
+  mutate(un_intermediate_region = ifelse(is.na(un_intermediate_region),
+                                         un_subregion,
+                                         un_intermediate_region),
+         un_intermediate_region_name_en = ifelse(is.na(un_intermediate_region_name_en),
+                                         un_subregion_name_en,
+                                         un_intermediate_region_name_en))
 
 # Pulling in names in different languages
 
@@ -87,7 +95,8 @@ for (i in 1:5) {
     select(m49 = `M49 Code`,
            !!sym(paste0("un_name_", ln_codes[i])) := `Country or Area`,
            !!sym(paste0("un_region_name_", ln_codes[i])) := `Region Name`,
-           !!sym(paste0("un_subregion_name_", ln_codes[i])) := `Sub-region Name`)
+           !!sym(paste0("un_subregion_name_", ln_codes[i])) := `Sub-region Name`,
+           !!sym(paste0("un_intermediate_region_name_", ln_codes[i])) := `Intermediate Region Name`)
   un_c <- left_join(un_c, df, by = "m49")
 }
 
@@ -103,12 +112,41 @@ alt_c <- read_excel("data-raw/alt_countries.xlsx") %>%
          former_name_en = formername,
          former_name_2_en = formername2)
 
+# Adding in SDG regions and subregions
+
+temp = tempfile(fileext = ".xlsx")
+url = "https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/aggregates_correspondence_table_2020_1.xlsx"
+download.file(url, temp, mode = "wb")
+
+sdg_reg <- readxl::read_xlsx(temp,
+                            sheet = "Annex",
+                            skip = 11,
+                            col_types = c(rep("skip", 3), "text", rep("skip", 4),
+                                          rep("text", 8), rep("skip", 13)),
+                            col_names = c("iso3",
+                                          "un_desa_subregion",
+                                          "un_desa_subregion_name_en",
+                                          "sdg_subregion",
+                                          "sdg_subregion_name_en",
+                                          "sdg_region",
+                                          "sdg_region_name_en",
+                                          "un_desa_region",
+                                          "un_desa_region_name_en")) %>%
+  mutate(sdg_subregion = ifelse(is.na(sdg_subregion),
+                                sdg_region,
+                                sdg_subregion),
+         sdg_subregion_name_en = ifelse(is.na(sdg_subregion_name_en),
+                                        sdg_region_name_en,
+                                        sdg_subregion_name_en)) %>%
+  filter(!is.na(iso3))
+
 # Merging together
 
 countries <- left_join(xmart_c, un_c, by = "iso3") %>%
   left_join(alt_c, by = "iso3") %>%
   left_join(wb_ig, by = "iso3") %>%
   left_join(wb_reg, by = "iso3") %>%
+  left_join(sdg_reg, by = "iso3") %>%
   select(iso3,
          iso2:who_code,
          m49,
@@ -128,18 +166,33 @@ countries <- left_join(xmart_c, un_c, by = "iso3") %>%
          who_region,
          un_region,
          un_subregion,
+         un_intermediate_region,
          un_region_name_en,
          un_subregion_name_en,
+         un_intermediate_region_name_en,
          un_region_name_ru,
          un_subregion_name_ru,
+         un_intermediate_region_name_ru,
          un_region_name_fr,
          un_subregion_name_fr,
+         un_intermediate_region_name_fr,
          un_region_name_es,
          un_subregion_name_es,
+         un_intermediate_region_name_es,
          un_region_name_ar,
          un_subregion_name_ar,
+         un_intermediate_region_name_ar,
          un_region_name_zh,
          un_subregion_name_zh,
+         un_intermediate_region_name_zh,
+         un_desa_region,
+         un_desa_region_name_en,
+         un_desa_subregion,
+         un_desa_subregion_name_en,
+         sdg_region,
+         sdg_region_name_en,
+         sdg_subregion,
+         sdg_subregion_name_en,
          wb_region,
          wb_region_name_en,
          wb_ig_1987:wb_ig_2019)
