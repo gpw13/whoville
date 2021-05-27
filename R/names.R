@@ -44,21 +44,24 @@ names_to_code <- function(names,
   assert_p(p)
 
   df <- dplyr::select(whoville::countries[,name_cols()],
-                      dplyr::ends_with(language))
+                      dplyr::ends_with(paste0("_", language)))
+
   if (ignore_case) {
     df <- dplyr::mutate(df,
                         dplyr::across(dplyr::everything(),
                                       tolower))
     names <- tolower(names)
   }
-  result <- sapply(names,
+
+  result <- sapply(unique(names),
                    name_matching,
                    df = df,
                    method = method,
                    p = p,
                    fm = fuzzy_matching,
                    type = type)
-  unname(result)
+
+  unname(result[names])
 }
 
 #' Get ISO3  codes from names
