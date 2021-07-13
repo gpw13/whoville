@@ -5,7 +5,7 @@
 \alias{countries}
 \title{Country metadata from the WHO, UN, and WB.}
 \format{
-A data frame with 249 rows and 103 variables:
+A data frame with 249 rows and 104 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code.}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code.}}
@@ -110,6 +110,7 @@ A data frame with 249 rows and 103 variables:
 \item{wb_ig_2017}{World Bank Income Group code, 2017 (FY 2019) classification.}
 \item{wb_ig_2018}{World Bank Income Group code, 2018 (FY 2020) classification.}
 \item{wb_ig_2019}{World Bank Income Group code, 2019 (FY 2021) classification.}
+\item{wb_ig_2020}{World Bank Income Group code, 2020 (FY 2022) classification.}
 }
 }
 \source{
