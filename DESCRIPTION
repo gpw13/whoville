@@ -6,7 +6,7 @@ Authors@R: person("Seth", "Caldwell", email = "caldwellst@gmail.com", role = c("
 Description: Provides a collated dataset with official country names and codes
     from the World Health Organization and United Nations, alongside additional metadata
     and utility functions to easily pull information into existing data frames.
-URL: https://github.com/caldwellst/ghost    
+URL: https://github.com/gpw13/ghost    
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

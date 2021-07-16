@@ -1,12 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# whoville <a href='https://github.com/caldwellst/whoville'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# whoville <a href='https://github.com/gpw13/whoville'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/caldwellst/whoville/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/whoville/actions)
+status](https://github.com/gpw13/whoville/workflows/R-CMD-check/badge.svg)](https://github.com/gpw13/whoville/actions)
 <!-- badges: end -->
 
 The goal of whoville is to provide a package country reference data
@@ -57,7 +57,7 @@ available through `?countries`.
 You can install whoville from Github with:
 
 ``` r
-devtools::install_github("caldwellst/whoville")
+devtools::install_github("gpw13/whoville")
 ```
 
 ## Usage
