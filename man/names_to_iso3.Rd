@@ -8,7 +8,7 @@ names_to_iso3(
   names,
   language = c("en", "es", "ru", "ar", "zh", "fr"),
   ignore_case = T,
-  fuzzy_matching = "yes",
+  fuzzy_matching = c("yes", "no", "user_input"),
   method = "jw",
   p = 0.1
 )

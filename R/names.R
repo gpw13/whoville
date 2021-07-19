@@ -33,7 +33,7 @@ names_to_code <- function(names,
                           type = "iso3",
                           language = c("en", "es", "ru", "ar", "zh", "fr"),
                           ignore_case = T,
-                          fuzzy_matching = "yes",
+                          fuzzy_matching = c("yes", "no", "user_input"),
                           method = "jw",
                           p = 0.1) {
   rlang::arg_match(type, country_code_types())
@@ -77,7 +77,7 @@ names_to_code <- function(names,
 names_to_iso3 <- function(names,
                           language = c("en", "es", "ru", "ar", "zh", "fr"),
                           ignore_case = T,
-                          fuzzy_matching = "yes",
+                          fuzzy_matching = c("yes", "no", "user_input"),
                           method = "jw",
                           p = 0.1) {
   names_to_code(names = names,
@@ -162,9 +162,9 @@ assert_p <- function(p) {
   }
 }
 
-assert_fuzzy_matching <- function(fuzzy_matching) {
-  rlang::arg_match(fuzzy_matching, c("yes", "no", "user_input"))
+assert_fuzzy_matching <- function(fuzzy_matching = c("yes", "no", "user_input")) {
+  fuzzy_matching <- rlang::arg_match(fuzzy_matching)
   if (fuzzy_matching == "user_input" & !interactive()) {
-    stop("R session must be interactive if fuzzying_matching is seting to 'user_input'. See ?interactive for more details.")
+    stop("R session must be interactive if fuzzying_matching is set to 'user_input'. See ?interactive for more details.")
   }
 }
