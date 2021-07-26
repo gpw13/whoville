@@ -36,7 +36,7 @@ download.file(url, temp, mode = "wb")
 
 wb_ig <- readxl::read_xlsx(temp,
                            sheet = "Country Analytical History",
-                           skip = 11,
+                           skip = 10,
                            col_names = c("iso3", "name", 1987:2020),
                            na = "..") %>%
   transmute(iso3 = iso3,
