@@ -39,7 +39,7 @@ names_to_code <- function(names,
   rlang::arg_match(type, country_code_types())
   language <- rlang::arg_match(language)
   assert_logical(ignore_case)
-  assert_fuzzy_matching(fuzzy_matching)
+  fuzzy_matching <- assert_fuzzy_matching(fuzzy_matching)
   rlang::arg_match(method, c("osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"))
   assert_p(p)
 
@@ -167,4 +167,6 @@ assert_fuzzy_matching <- function(fuzzy_matching = c("yes", "no", "user_input"))
   if (fuzzy_matching == "user_input" & !interactive()) {
     stop("R session must be interactive if fuzzying_matching is set to 'user_input'. See ?interactive for more details.")
   }
+
+  fuzzy_matching
 }
