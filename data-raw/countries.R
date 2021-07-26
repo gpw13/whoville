@@ -35,26 +35,17 @@ url <- "http://databank.worldbank.org/data/download/site-content/OGHIST.xlsx"
 download.file(url, temp, mode = "wb")
 
 wb_ig <- readxl::read_xlsx(temp,
-  sheet = "Historical classifications",
-  skip = 0,
-  range = cell_cols(1:4),
-  na = ".."
-) %>%
-  transmute(
-    iso3 = wb_code,
-    datayear = datayear,
-    income_group = case_when(
-      income_group == "High income" ~ "HIC",
-      income_group == "Low income" ~ "LIC",
-      income_group == "Upper middle income" ~ "UMC",
-      income_group == "Lower middle income" ~ "LMC",
-    )
-  ) %>%
-  pivot_wider(
-    names_from = "datayear",
-    names_prefix = "wb_ig_",
-    values_from = "income_group"
-  )
+                           sheet = "Country Analytical History",
+                           skip = 11,
+                           col_names = c("iso3", "name", 1987:2020),
+                           na = "..") %>%
+  transmute(iso3 = iso3,
+            across(matches("[0-9]{4}"),
+                   ~case_when(
+                     .x %in% c("L", "H") ~ paste0(.x, "IC"),
+                     .x %in% c("LM", "UM") ~ paste0(.x, "C")
+                   ),
+                   .names = "wb_ig_{.col}"))
 
 # WB region data
 
