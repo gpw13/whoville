@@ -2,7 +2,6 @@ library(tidyverse)
 library(readxl)
 library(wppdistro)
 library(xmart4)
-library(pdftools)
 
 # Adding in WHO data
 
