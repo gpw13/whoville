@@ -5,13 +5,14 @@
 \alias{countries}
 \title{Country metadata from the WHO, UN, and WB.}
 \format{
-A data frame with 249 rows and 104 variables:
+A data frame with 249 rows and 109 variables:
 \describe{
 \item{iso3}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3}{ISO3 code.}}
 \item{iso2}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO2 code.}}
 \item{iso_numeric}{\href{https://en.wikipedia.org/wiki/ISO_3166-1_numeric}{ISO numeric code.}}
 \item{who_code}{\href{https://apps.who.int/gho/data/node.metadata.COUNTRY?lang=en}{World Health Organization code.}}
 \item{m49}{\href{https://en.wikipedia.org/wiki/UN_M49}{United Nations M49 code.}}
+\item{gbd_code}{\href{http://www.healthdata.org/gbd/faq}{IHME GBD country code.}}
 \item{sovereign_iso3}{ISO3 code of sovereign nation. Value is \code{NA} if sovereign itself.}
 \item{who_member}{Logical, is country a WHO member state?}
 \item{who_member_small}{Logical, is country a WHO member state with population <= 90,000?}
@@ -75,6 +76,10 @@ A data frame with 249 rows and 104 variables:
 \item{sdg_region_name_en}{SDG region name, English.}
 \item{sdg_subregion}{SDG subregion code.}
 \item{sdg_subregion_name_en}{SDG subregion name, English.}
+\item{gbd_region}{IHME GBD region code.}
+\item{gbd_region_name_en}{IHME GBD region name, English.}
+\item{gbd_subregion}{IHME GBD subregion code.}
+\item{gbd_subregion_name_en}{IHME GBD subregion name, English.}
 \item{wb_region}{WB geographical region. English name as no code provided by WB.}
 \item{wb_region_name_en}{WB geographical region name, English.}
 \item{wb_ig_1987}{World Bank Income Group code, 1987 (FY 1989) classification.}
@@ -127,6 +132,8 @@ A data frame with 249 rows and 104 variables:
 \href{https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf}{United Nations Committee for Development Policy, list of least developed countries, accessed 16 February 2021.}
 
 \href{https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/aggregates_correspondence_table_2020_1.xlsx}{United Nations Department of Economic and Social Affairs, Population Division (2020). International Migrant Stock 2020.}
+
+\href{http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip}{Global Burden of Disease 2019 country and regional classifications, Institute for Health Metrics and Evaluation.}
 }
 \usage{
 countries

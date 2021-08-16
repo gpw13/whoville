@@ -7,8 +7,8 @@
 iso3_to_regions(
   iso3,
   region = c("who_region", "un_region", "un_subregion", "un_intermediate_region",
-    "sdg_region", "sdg_subregion", "un_desa_region", "un_desa_subregion", "wb_region",
-    "wb_ig"),
+    "sdg_region", "sdg_subregion", "gbd_region", "gbd_subregion", "un_desa_region",
+    "un_desa_subregion", "wb_region", "wb_ig"),
   year = max(wb_ig_years()),
   name = FALSE,
   language = c("en", "es", "ru", "ar", "zh", "fr")
@@ -17,17 +17,19 @@ iso3_to_regions(
 \arguments{
 \item{iso3}{Character vector of ISO3 codes.}
 
-\item{region}{Type of region to return. Can be any of "who_region" (default),
-"un_region", "un_subregion", "wb_region", or "wb_ig".}
+\item{region}{Type of region to return. Regional classifications available from
+the WHO, UN, UNSD SDGs, UN DESA, the World Bank (geographic and income based),
+and IHME's GBD. See the \link{countries} documentation for more source
+details.}
 
 \item{year}{For World Bank Income Group only, specify the year to return.}
 
-\item{name}{For UN region and subregion and WB region only. If \code{TRUE},
-return official UN name instead of M49 code.}
+\item{name}{For UN, UNSD SDG, UN DESA, WB and IHME GBD regions only. If \code{TRUE},
+return official regional name instead of code.}
 
-\item{language}{For UN region and subregion only, if returning name.
-A character value specifying the language of the country names.
-Should be specified using the ISO2 language code.}
+\item{language}{For \code{"un_region"}, \code{"un_subregion"}, and \code{"un_intermediate_region"}
+only if returning name. A character value specifying the language of the
+country names. Should be specified using the ISO2 language code.}
 }
 \value{
 Character vector.

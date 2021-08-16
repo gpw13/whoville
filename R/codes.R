@@ -7,20 +7,22 @@
 #' Income Groups.
 #'
 #' @param iso3 Character vector of ISO3 codes.
-#' @param region Type of region to return. Can be any of "who_region" (default),
-#'     "un_region", "un_subregion", "wb_region", or "wb_ig".
+#' @param region Type of region to return. Regional classifications available from
+#'     the WHO, UN, UNSD SDGs, UN DESA, the World Bank (geographic and income based),
+#'     and IHME's GBD. See the [whoville::countries] documentation for more source
+#'     details.
 #' @param year For World Bank Income Group only, specify the year to return.
-#' @param name For UN region and subregion and WB region only. If `TRUE`,
-#'     return official UN name instead of M49 code.
-#' @param language For UN region and subregion only, if returning name.
-#'     A character value specifying the language of the country names.
-#'     Should be specified using the ISO2 language code.
+#' @param name For UN, UNSD SDG, UN DESA, WB and IHME GBD regions only. If `TRUE`,
+#'     return official regional name instead of code.
+#' @param language For `"un_region"`, `"un_subregion"`, and `"un_intermediate_region"`
+#'     only if returning name. A character value specifying the language of the
+#'     country names. Should be specified using the ISO2 language code.
 #'
 #' @return Character vector.
 #'
 #' @export
 iso3_to_regions <- function(iso3,
-                            region = c("who_region", "un_region", "un_subregion", "un_intermediate_region", "sdg_region", "sdg_subregion", "un_desa_region", "un_desa_subregion", "wb_region", "wb_ig"),
+                            region = c("who_region", "un_region", "un_subregion", "un_intermediate_region", "sdg_region", "sdg_subregion", "gbd_region", "gbd_subregion", "un_desa_region", "un_desa_subregion", "wb_region", "wb_ig"),
                             year = max(wb_ig_years()),
                             name = FALSE,
                             language = c("en", "es", "ru", "ar", "zh", "fr")) {
@@ -29,7 +31,7 @@ iso3_to_regions <- function(iso3,
   if (region == "wb_ig") {
     assert_wb_ig_years(year)
     mtch <- paste(region, year, sep = "_")
-  } else if (region %in% c("un_region", "un_subregion", "un_intermediate_region", "sdg_region", "sdg_subregion", "un_desa_region", "un_desa_subregion") && name) {
+  } else if (region %in% c("un_region", "un_subregion", "un_intermediate_region", "sdg_region", "sdg_subregion", "gbd_region", "gbd_subregion", "un_desa_region", "un_desa_subregion", "wb_region") && name) {
     language <- rlang::arg_match(language)
     mtch <- paste(region, "name", language, sep = "_")
   } else {
