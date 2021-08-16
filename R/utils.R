@@ -15,7 +15,7 @@ name_cols <- function() {
 #' @export
 country_code_types <- function() {
   nms <- names(whoville::countries)
-  nms[1:match("m49", nms)]
+  nms[1:match("gbd_code", nms)]
 }
 
 #' Years of WB IG classifications available

@@ -162,6 +162,39 @@ sdg_reg <- readxl::read_xlsx(temp,
   ) %>%
   filter(!is.na(iso3))
 
+# Add in GBD regions and codes from IHME
+
+temp_z <- tempfile()
+download.file("http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip",
+              temp_z)
+gbd_heirarchy <- readxl::read_excel(unzip(temp_z,"IHME_GBD_2019_GBD_LOCATION_HIERARCHY_Y2020M10D15.XLSX"))
+
+gbd_iso3 <- gbd_heirarchy %>%
+  mutate(iso3 = names_to_iso3(`Location Name`,
+                              fuzzy_matching = "no"),
+         iso3 = ifelse(`Location ID` == 533, # US state of Georgia
+                       NA,
+                       iso3)) %>%
+  filter(!is.na(iso3)) %>%
+  select(iso3, gbd_code = `Location ID`, gbd_subregion = `Parent ID`)
+
+gbd_df <- gbd_iso3 %>%
+  left_join(gbd_heirarchy,
+            by = c("gbd_subregion" = "Location ID")) %>%
+  select(iso3,
+         gbd_code,
+         gbd_subregion,
+         gbd_subregion_name_en = `Location Name`,
+         gbd_region = `Parent ID`) %>%
+  left_join(gbd_heirarchy,
+            by = c("gbd_region" = "Location ID")) %>%
+  select(iso3,
+         gbd_code,
+         gbd_subregion,
+         gbd_subregion_name_en,
+         gbd_region,
+         gbd_region_name_en = `Location Name`)
+
 # Merging together
 
 countries <- left_join(xmart_c, un_c, by = "iso3") %>%
@@ -169,10 +202,12 @@ countries <- left_join(xmart_c, un_c, by = "iso3") %>%
   left_join(wb_ig, by = "iso3") %>%
   left_join(wb_reg, by = "iso3") %>%
   left_join(sdg_reg, by = "iso3") %>%
+  left_join(gbd_df, by = "iso3") %>%
   select(
     iso3,
     iso2:who_code,
     m49,
+    gbd_code,
     sovereign_iso3,
     who_member,
     un_ldc,
@@ -216,6 +251,10 @@ countries <- left_join(xmart_c, un_c, by = "iso3") %>%
     sdg_region_name_en,
     sdg_subregion,
     sdg_subregion_name_en,
+    gbd_region,
+    gbd_region_name_en,
+    gbd_subregion,
+    gbd_subregion_name_en,
     wb_region,
     wb_region_name_en,
     wb_ig_1987:wb_ig_2020

@@ -1,3 +1,8 @@
+# whoville 0.1.7
+
+* IHME's GBD codes and regional classifications added to allow conversion between ISO3 and GBD codes, as well as use of
+the GBD regions in analyses.
+
 # whoville 0.1.6
 
 * Minor change to accommodate new formatting for the World Bank's historical classification by income for countries.
