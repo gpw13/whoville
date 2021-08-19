@@ -53,6 +53,9 @@ names_to_code <- function(names,
     names <- tolower(names)
   }
 
+  # drop missing values in names
+  names <- names[!is.na(names)]
+
   result <- sapply(unique(names),
                    name_matching,
                    df = df,
