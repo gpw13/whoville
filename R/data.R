@@ -125,4 +125,3 @@
 #' @source \href{https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/aggregates_correspondence_table_2020_1.xlsx}{United Nations Department of Economic and Social Affairs, Population Division (2020). International Migrant Stock 2020.}
 #' @source \href{http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip}{Global Burden of Disease 2019 country and regional classifications, Institute for Health Metrics and Evaluation.}
 "countries"
-
