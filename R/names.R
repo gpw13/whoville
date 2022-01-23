@@ -43,13 +43,19 @@ names_to_code <- function(names,
   rlang::arg_match(method, c("osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"))
   assert_p(p)
 
-  df <- dplyr::select(whoville::countries[,name_cols()],
-                      dplyr::ends_with(paste0("_", language)))
+  df <- dplyr::select(
+    whoville::countries[, name_cols()],
+    dplyr::ends_with(paste0("_", language))
+  )
 
   if (ignore_case) {
-    df <- dplyr::mutate(df,
-                        dplyr::across(dplyr::everything(),
-                                      tolower))
+    df <- dplyr::mutate(
+      df,
+      dplyr::across(
+        dplyr::everything(),
+        tolower
+      )
+    )
     names <- tolower(names)
   }
 
@@ -57,12 +63,13 @@ names_to_code <- function(names,
   names <- names[!is.na(names)]
 
   result <- sapply(unique(names),
-                   name_matching,
-                   df = df,
-                   method = method,
-                   p = p,
-                   fm = fuzzy_matching,
-                   type = type)
+    name_matching,
+    df = df,
+    method = method,
+    p = p,
+    fm = fuzzy_matching,
+    type = type
+  )
 
   unname(result[names])
 }
@@ -83,13 +90,15 @@ names_to_iso3 <- function(names,
                           fuzzy_matching = c("yes", "no", "user_input"),
                           method = "jw",
                           p = 0.1) {
-  names_to_code(names = names,
-                type = "iso3",
-                language = language,
-                ignore_case = ignore_case,
-                fuzzy_matching = fuzzy_matching,
-                method = method,
-                p = p)
+  names_to_code(
+    names = names,
+    type = "iso3",
+    language = language,
+    ignore_case = ignore_case,
+    fuzzy_matching = fuzzy_matching,
+    method = method,
+    p = p
+  )
 }
 
 #' @noRd
@@ -115,18 +124,22 @@ name_matching <- function(name,
       } else {
         check <- T
         while (check) {
-          message("The best match found for '", name, "' is '", fit, "' with ", toupper(type)," code ", fuzz_result, ".")
-          result <- readline(sprintf("Confirm the correct %s code for %s. Type 'N/A' to skip this country: ",
-                                     toupper(type),
-                                     name))
+          message("The best match found for '", name, "' is '", fit, "' with ", toupper(type), " code ", fuzz_result, ".")
+          result <- readline(sprintf(
+            "Confirm the correct %s code for %s. Type 'N/A' to skip this country: ",
+            toupper(type),
+            name
+          ))
           if (result %in% c("N/A", whoville::countries[[type]])) {
             check <- F
             if (result == "N/A") result <- NA_character_
           } else {
-            check_input <- readline(sprintf("%s is not a valid %s code found in the countries file. Please confirm if %s is correct (y/n): ",
-                                            result,
-                                            toupper(type),
-                                            result))
+            check_input <- readline(sprintf(
+              "%s is not a valid %s code found in the countries file. Please confirm if %s is correct (y/n): ",
+              result,
+              toupper(type),
+              result
+            ))
             if (tolower(check_input) == "y") {
               check <- F
             } else {
@@ -146,22 +159,31 @@ name_matching <- function(name,
 assert_p <- function(p) {
   lngth <- length(p)
   if (lngth > 1) {
-    stop(sprintf("p must be of length 1, not %s",
-                 lngth),
-         call. = FALSE)
+    stop(sprintf(
+      "p must be of length 1, not %s",
+      lngth
+    ),
+    call. = FALSE
+    )
   }
 
   cls <- class(p)
   if (!is.numeric(p)) {
-    stop(sprintf("p must be a numeric value, not %s",
-                 cls),
-         call. = FALSE)
+    stop(sprintf(
+      "p must be a numeric value, not %s",
+      cls
+    ),
+    call. = FALSE
+    )
   }
 
   if (!dplyr::between(p, 0, 0.25)) {
-    stop(sprintf("p must be between 0 and 0.25, not %s",
-                 p),
-         call. = FALSE)
+    stop(sprintf(
+      "p must be between 0 and 0.25, not %s",
+      p
+    ),
+    call. = FALSE
+    )
   }
 }
 

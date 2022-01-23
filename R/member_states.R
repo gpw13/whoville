@@ -230,4 +230,3 @@ is_un_sid <- function(iso3) {
   idx <- match(iso3, whoville::countries[["iso3"]])
   members[idx] %in% TRUE
 }
-

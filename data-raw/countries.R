@@ -34,17 +34,21 @@ url <- "http://databank.worldbank.org/data/download/site-content/OGHIST.xlsx"
 download.file(url, temp, mode = "wb")
 
 wb_ig <- readxl::read_xlsx(temp,
-                           sheet = "Country Analytical History",
-                           skip = 10,
-                           col_names = c("iso3", "name", 1987:2020),
-                           na = "..") %>%
-  transmute(iso3 = iso3,
-            across(matches("[0-9]{4}"),
-                   ~case_when(
-                     .x %in% c("L", "H") ~ paste0(.x, "IC"),
-                     .x %in% c("LM", "UM") ~ paste0(.x, "C")
-                   ),
-                   .names = "wb_ig_{.col}"))
+  sheet = "Country Analytical History",
+  skip = 10,
+  col_names = c("iso3", "name", 1987:2020),
+  na = ".."
+) %>%
+  transmute(
+    iso3 = iso3,
+    across(matches("[0-9]{4}"),
+      ~ case_when(
+        .x %in% c("L", "H") ~ paste0(.x, "IC"),
+        .x %in% c("LM", "UM") ~ paste0(.x, "C")
+      ),
+      .names = "wb_ig_{.col}"
+    )
+  )
 
 # WB region data
 
@@ -165,35 +169,45 @@ sdg_reg <- readxl::read_xlsx(temp,
 # Add in GBD regions and codes from IHME
 
 temp_z <- tempfile()
-download.file("http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip",
-              temp_z)
-gbd_heirarchy <- readxl::read_excel(unzip(temp_z,"IHME_GBD_2019_GBD_LOCATION_HIERARCHY_Y2020M10D15.XLSX"))
+download.file(
+  "http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip",
+  temp_z
+)
+gbd_heirarchy <- readxl::read_excel(unzip(temp_z, "IHME_GBD_2019_GBD_LOCATION_HIERARCHY_Y2020M10D15.XLSX"))
 
 gbd_iso3 <- gbd_heirarchy %>%
-  mutate(iso3 = names_to_iso3(`Location Name`,
-                              fuzzy_matching = "no"),
-         iso3 = ifelse(`Location ID` == 533, # US state of Georgia
-                       NA,
-                       iso3)) %>%
+  mutate(
+    iso3 = names_to_iso3(`Location Name`,
+      fuzzy_matching = "no"
+    ),
+    iso3 = ifelse(`Location ID` == 533, # US state of Georgia
+      NA,
+      iso3
+    )
+  ) %>%
   filter(!is.na(iso3)) %>%
   select(iso3, gbd_code = `Location ID`, gbd_subregion = `Parent ID`)
 
 gbd_df <- gbd_iso3 %>%
   left_join(gbd_heirarchy,
-            by = c("gbd_subregion" = "Location ID")) %>%
+    by = c("gbd_subregion" = "Location ID")
+  ) %>%
   select(iso3,
-         gbd_code,
-         gbd_subregion,
-         gbd_subregion_name_en = `Location Name`,
-         gbd_region = `Parent ID`) %>%
+    gbd_code,
+    gbd_subregion,
+    gbd_subregion_name_en = `Location Name`,
+    gbd_region = `Parent ID`
+  ) %>%
   left_join(gbd_heirarchy,
-            by = c("gbd_region" = "Location ID")) %>%
+    by = c("gbd_region" = "Location ID")
+  ) %>%
   select(iso3,
-         gbd_code,
-         gbd_subregion,
-         gbd_subregion_name_en,
-         gbd_region,
-         gbd_region_name_en = `Location Name`)
+    gbd_code,
+    gbd_subregion,
+    gbd_subregion_name_en,
+    gbd_region,
+    gbd_region_name_en = `Location Name`
+  )
 
 # Merging together
 
