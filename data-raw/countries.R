@@ -173,7 +173,7 @@ download.file(
   "http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip",
   temp_z
 )
-gbd_heirarchy <- readxl::read_excel(unzip(temp_z, "IHME_GBD_2019_GBD_LOCATION_HIERARCHY_Y2020M10D15.XLSX"))
+gbd_heirarchy <- readxl::read_excel(unzip(temp_z, "IHME_GBD_2019_GBD_LOCATION_HIERARCHY_Y2022M04D29.XLSX"))
 
 gbd_iso3 <- gbd_heirarchy %>%
   mutate(
