@@ -36,7 +36,7 @@ download.file(url, temp, mode = "wb")
 wb_ig <- readxl::read_xlsx(temp,
   sheet = "Country Analytical History",
   skip = 10,
-  col_names = c("iso3", "name", 1987:2020),
+  col_names = c("iso3", "name", 1987:2021),
   na = ".."
 ) %>%
   transmute(
@@ -53,13 +53,13 @@ wb_ig <- readxl::read_xlsx(temp,
 # WB region data
 
 temp <- tempfile(fileext = ".xls")
-url <- "http://databank.worldbank.org/data/download/site-content/CLASS.xls"
+url <- "http://databank.worldbank.org/data/download/site-content/CLASS.xlsx"
 download.file(url, temp, mode = "wb")
 
-wb_reg <- readxl::read_xls(temp,
+wb_reg <- readxl::read_xlsx(temp,
   sheet = "List of economies",
   skip = 6,
-  col_types = c(rep("skip", 3), "text", "skip", "text", rep("skip", 3)),
+  col_types = c("skip", "text", "skip", "text", "skip", "skip"),
   col_names = c("iso3", "wb_region"),
   na = ".."
 ) %>%
@@ -173,7 +173,10 @@ download.file(
   "http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip",
   temp_z
 )
-gbd_heirarchy <- readxl::read_excel(unzip(temp_z, "IHME_GBD_2019_GBD_LOCATION_HIERARCHY_Y2022M04D29.XLSX"))
+gbd_heirarchy <- readxl::read_excel(unzip(temp_z, "IHME_GBD_2019_GBD_LOCATION_HIERARCHY_Y2022M06D29.XLSX")) %>%
+  # typo in column name for this data release
+  dplyr::rename(`Location Name` = `Location Nam`)
+
 
 gbd_iso3 <- gbd_heirarchy %>%
   mutate(

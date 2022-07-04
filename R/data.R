@@ -115,13 +115,16 @@
 #'   \item{wb_ig_2018}{World Bank Income Group code, 2018 (FY 2020) classification.}
 #'   \item{wb_ig_2019}{World Bank Income Group code, 2019 (FY 2021) classification.}
 #'   \item{wb_ig_2020}{World Bank Income Group code, 2020 (FY 2022) classification.}
+#'   \item{wb_ig_202``}{World Bank Income Group code, 2021 (FY 2023) classification.}
 #' }
-#' @source \href{https://portal-uat.who.int/xmart4/REFMART}{World Health Organization country reference table, accessed June 24 2022.}
+#' @source \href{https://portal-uat.who.int/xmart4/REFMART}{World Health Organization country reference table, accessed July 4 2022.}
 #' @source \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Statistics Division, Country or Area Codes for Statistical Use tables; accessed August 15 2020.}
-#' @source \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, and regions, accessed August 15 2020.}
+#' @source \href{"http://databank.worldbank.org/data/download/site-content/OGHIST.xlsx"}{Historical World Bank income groups, fiscal years 1989 - 2023, and regions, accessed July 4, 2022.}
+#' @source \href{"http://databank.worldbank.org/data/download/site-content/CLASS.xlsx"}{Current World Bank income groups, accessed July 4, 2022.}
 #' @source \href{https://www.oecd.org/about/members-and-partners/}{Organisation for Economic Co-operation and Development membership list, accessed 1 February 2021.}
 #' @source \href{http://ghdx.healthdata.org/gbd-2019}{Institute for Health Metrics and Evaluation Global Burden of Disease 2019 Socio-Demographic Index data, accessed June 24 2022.}
 #' @source \href{https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf}{United Nations Committee for Development Policy, list of least developed countries, accessed 16 February 2021.}
 #' @source \href{https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/aggregates_correspondence_table_2020_1.xlsx}{United Nations Department of Economic and Social Affairs, Population Division (2020). International Migrant Stock 2020.}
-#' @source \href{http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip}{Global Burden of Disease 2019 country and regional classifications, Institute for Health Metrics and Evaluation.}
+#' @source \href{http://ghdx.healthdata.org/sites/default/files/ihme_query_tool/IHME_GBD_2019_CODEBOOK.zip}{Global Burden of Disease 2019 country and regional classifications, Institute for Health Metrics and Evaluation, accessed July 4 2022.}
+#'
 "countries"
