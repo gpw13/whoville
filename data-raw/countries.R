@@ -53,10 +53,10 @@ wb_ig <- readxl::read_xlsx(temp,
 # WB region data
 
 temp <- tempfile(fileext = ".xls")
-url <- "http://databank.worldbank.org/data/download/site-content/CLASS.xlsx"
+url <- "http://databank.worldbank.org/data/download/site-content/CLASS.xlsxx"
 download.file(url, temp, mode = "wb")
 
-wb_reg <- readxl::read_xlsx(temp,
+wb_reg <- readxl::read_xlsxx(temp,
   sheet = "List of economies",
   na = ".."
 ) %>%
