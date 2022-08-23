@@ -1,7 +1,7 @@
 pandoc: 2.7.3
-pkgdown: 2.0.5
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   whoville-usage: whoville-usage.html
-last_built: 2022-07-04T20:38Z
+last_built: 2022-08-23T10:59Z
 
