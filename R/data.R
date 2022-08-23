@@ -119,8 +119,7 @@
 #' }
 #' @source \href{https://portal-uat.who.int/xmart4/REFMART}{World Health Organization country reference table, accessed July 4 2022.}
 #' @source \href{https://unstats.un.org/unsd/methodology/m49/overview/}{United Nations Statistics Division, Country or Area Codes for Statistical Use tables; accessed August 15 2020.}
-#' @source \href{"http://databank.worldbank.org/data/download/site-content/OGHIST.xlsx"}{Historical World Bank income groups, fiscal years 1989 - 2023, and regions, accessed July 4, 2022.}
-#' @source \href{"http://databank.worldbank.org/data/download/site-content/CLASS.xlsx"}{Current World Bank income groups, accessed July 4, 2022.}
+#' @source \href{https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups}{World Bank income groups, fiscal years 1989 - 2021, and regions, accessed August 23 2022.}
 #' @source \href{https://www.oecd.org/about/members-and-partners/}{Organisation for Economic Co-operation and Development membership list, accessed 1 February 2021.}
 #' @source \href{http://ghdx.healthdata.org/gbd-2019}{Institute for Health Metrics and Evaluation Global Burden of Disease 2019 Socio-Demographic Index data, accessed June 24 2022.}
 #' @source \href{https://www.un.org/development/desa/dpad/wp-content/uploads/sites/45/publication/ldc_list.pdf}{United Nations Committee for Development Policy, list of least developed countries, accessed 16 February 2021.}
